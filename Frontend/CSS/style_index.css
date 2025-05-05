@@ -29,6 +29,7 @@ body {
     margin-right: auto;
     margin-top: 6em;
     border-radius: 15px;
+    border: 2px solid black;
 }
 
 .action-buttons {
@@ -40,7 +41,7 @@ body {
 
 .action-buttons>a {
     background-color: lightgreen;
-    padding: 1em;
+    border: 2px solid black;
     border: 2px solid gray;
     border-radius: 15px;
     margin-top: 6em;
