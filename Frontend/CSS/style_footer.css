@@ -1,22 +1,3 @@
-
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-}
-
 .footer {
   background-color: #669966;
   color: white;
