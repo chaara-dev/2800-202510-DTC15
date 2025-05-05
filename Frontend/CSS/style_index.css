@@ -29,3 +29,24 @@ body {
     margin-top: 6em;
     border-radius: 15px;
 }
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-buttons>a {
+    background-color: lightgreen;
+    padding: 1em;
+    border: 2px solid gray;
+    border-radius: 15px;
+    margin-top: 6em;
+    margin-left: 4em;
+    margin-right: 4em;
+
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
