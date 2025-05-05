@@ -1,59 +1,59 @@
 .footer {
-  background-color: #669966;
-  color: white;
-  text-align: center;
-  padding: 0.5rem 1rem;
-  border-top: 2px solid black;
+    background-color: #669966;
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-top: 2px solid black;
 }
 
 .footer-title {
-  margin: 0.25rem 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+    margin: 0.25rem 0;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .footer-links {
-  margin: 0.25rem 0;
+    margin: 0.25rem 0;
 }
 
 .footer-links a {
-  color: white;
-  margin: 0 0.5rem;
-  text-decoration: none;
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
 }
 
 .footer-copy {
-  padding-top: 1rem;
-  margin: 0;
-  font-size: 0.75rem;
-  margin-bottom: 0.3rem;
+    padding-top: 1rem;
+    margin: 0;
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
 }
 
 .footer-icon {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
-  vertical-align: middle;
-  margin: 0 0.75rem;
-  margin-bottom: 0.5rem;
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    vertical-align: middle;
+    margin: 0 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
-  .footer {
-    padding: 0.75rem 2rem;
-  }
+    .footer {
+        padding: 0.75rem 2rem;
+    }
 
-  .footer-title {
-    font-size: 1.75rem;
-  }
+    .footer-title {
+        font-size: 1.75rem;
+    }
 
-  .footer-icon {
-    width: 28px;
-    height: 28px;
-    margin: 0 1rem;
-  }
+    .footer-icon {
+        width: 28px;
+        height: 28px;
+        margin: 0 1rem;
+    }
 
-  .footer-copy {
-    font-size: 0.85rem;
-  }
+    .footer-copy {
+        font-size: 0.85rem;
+    }
 }
