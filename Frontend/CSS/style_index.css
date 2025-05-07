@@ -8,8 +8,11 @@ body,
 html {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;  /* ✅ prevent horizontal scrolling */
-    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    /* ✅ prevent horizontal scrolling */
+    font-family: "Emilys Candy", serif;
+    font-weight: 400;
+    font-style: normal;
     height: 100%;
     color: #f4f4f4;
 }
@@ -19,6 +22,8 @@ html {
     background-size: cover;
     position: relative;
     min-height: 100vh;
+    display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -48,6 +53,10 @@ html {
 }
 
 .nav-title {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
     font-size: 1.8rem;
     font-weight: 600;
 }
@@ -70,9 +79,12 @@ html {
 }
 
 .main-content {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    overflow: hidden;
     height: calc(100vh - 150px);
     text-align: center;
 }
@@ -84,10 +96,13 @@ html {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     max-width: 400px;
     width: 90%;
+    max-height: 90vh; /* Prevents it from going off screen */
+    overflow-y: auto;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: xxx-large;
+    font-weight: bolder;
     margin-bottom: 2rem;
 }
 
@@ -133,7 +148,8 @@ h1 {
     .navbar {
         flex-direction: row;
         align-items: center;
-        position: relative; /* Needed for absolute positioning of dropdown */
+        position: relative;
+        /* Needed for absolute positioning of dropdown */
     }
 
     .menu-toggle {
@@ -154,7 +170,8 @@ h1 {
     }
 
     .nav-links.active {
-        max-height: 500px; /* Large enough to fit all links */
+        max-height: 500px;
+        /* Large enough to fit all links */
     }
 
     .nav-links a {
@@ -173,13 +190,11 @@ h1 {
     }
 
     .content-box h1 {
-        font-size: 1.8rem;
+        font-size: xx-large;
+        font-weight: bolder;
     }
 
-    .btn {
-        width: 100%;
-        box-sizing: border-box;
-    }
+    
 
     .footer-icon {
         width: 20px;
