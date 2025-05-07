@@ -84,7 +84,6 @@ body {
     font-weight: 500;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 480px) {
     body {
         padding: 15px;
