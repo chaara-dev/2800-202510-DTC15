@@ -133,6 +133,7 @@ h1 {
     .navbar {
         flex-direction: row;
         align-items: center;
+        position: relative; /* Needed for absolute positioning of dropdown */
     }
 
     .menu-toggle {
@@ -140,22 +141,36 @@ h1 {
     }
 
     .nav-links {
-        display: none;
         flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
         background-color: rgba(0, 51, 0, 0.7);
-        /* Match navbar background */
-        padding: 1rem;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease;
+        z-index: 9;
     }
 
     .nav-links.active {
-        display: flex;
+        max-height: 500px; /* Large enough to fit all links */
     }
 
     .nav-links a {
         margin: 0.5rem 0;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 
+    .nav-links a:hover {
+        background-color: #083404;
+        color: white;
+    }
 
     .content-box h1 {
         font-size: 1.8rem;
