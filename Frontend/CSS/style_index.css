@@ -1,65 +1,89 @@
-html,
-body {
-    height: 100%;
+body, html {
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: #71986b url(../Resources/Images/leaves_background.png) center/100%;
-}
-
-body {
-    flex: 1;
+    height: 100%;
+    color: #f4f4f4;
+  }
+  
+  .background {
+    background: url('../Resources/Images/leaves_background.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .navbar {
     display: flex;
-    flex-direction: column;
-}
-
-.main-content {
-    flex: 1;
-}
-
-.main-header {
-    font-size: 1.5em;
-    text-align: center;
-    background-color: green;
-    width: 10em;
-    height: 3em;
-    line-height: 3em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5em;
-    border-radius: 15px;
-    border: 2px solid black;
-}
-
-.action-buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.action-buttons>a {
-    background-color: lightgreen;
-    padding: 1em;
-    border: 2px solid black;
-    border-radius: 15px;
-    margin-top: 7.5em;
-    margin-left: 4em;
-    margin-right: 4em;
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 51, 0, 0.7);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .nav-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .nav-links a {
+    color: #ffffff;
+    margin-left: 1.5rem;
     text-decoration: none;
-    color: black;
-    cursor: pointer;
-}
-
-.image_watering_can {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 3em;
-    margin-top: 6em;
-    height: 15em;
-    width: 15em;
-    opacity: 80%;
-}
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #a6e3a1;
+  }
+  
+  .main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+    text-align: center;
+  }
+  
+  .content-box {
+    background-color: rgba(0, 51, 0, 0.6);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .highlight {
+    color: #a6e3a1;
+  }
+  
+  .buttons .btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 0.7rem 1.5rem;
+    background-color: #a6e3a1;
+    color: #003300;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .buttons .btn:hover {
+    background-color: #8cd18b;
+  }
+  
+  .image_watering_can {
+    display: none; /* hidden for now unless you want to reposition it */
+  }

@@ -1,59 +1,43 @@
 .footer {
-    background-color: #669966;
-    color: white;
+    background-color: rgba(0, 51, 0, 0.7); /* same tone as navbar & box */
+    color: #f0fdf4;
+    padding: 1.5rem 1rem;
     text-align: center;
-    padding: 0.5rem 1rem;
-    border-top: 2px solid black;
-}
-
-.footer-title {
-    margin: 0.25rem 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    backdrop-filter: blur(6px); /* optional glass effect */
+  }
+  
+  .footer-title {
     font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.footer-links {
-    margin: 0.25rem 0;
-}
-
-.footer-links a {
-    color: white;
-    margin: 0 0.5rem;
-    text-decoration: none;
-}
-
-.footer-copy {
-    padding-top: 0.5rem;
-    margin: 0;
-    font-size: 0.75rem;
-    margin-bottom: 0.3rem;
-}
-
-.footer-icon {
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
-    vertical-align: middle;
-    margin: 0 0.75rem;
-    margin-bottom: 0.5rem;
-}
-
-@media screen and (min-width: 768px) {
-    .footer {
-        padding: 0.75rem 2rem;
-    }
-
-    .footer-title {
-        font-size: 1.75rem;
-    }
-
-    .footer-icon {
-        width: 28px;
-        height: 28px;
-        margin: 0 1rem;
-    }
-
-    .footer-copy {
-        font-size: 0.85rem;
-    }
-}
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .footer-icon {
+    width: 28px;
+    margin: 0 12px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(0) invert(1); /* makes icons white */
+  }
+  
+  .footer-icon:hover {
+    transform: scale(1.2);
+    filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
+  }
+  
+  .footer-copy {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
