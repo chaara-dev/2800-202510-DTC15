@@ -2,38 +2,46 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>PlantPal</title>
     <link rel="stylesheet" href="../CSS/style_index.css">
     <link rel="stylesheet" href="../CSS/style_footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap">
 </head>
 
 <body>
-    <div class="main-content">
-        <div class="main-header">
-            PlantPal
-        </div>
-        <div class="action-buttons">
-            <a href="#" id="signUpButton">Sign Up</a>
-            </br>
-            <a href="#" id="signInButton">Sign In</a>
+    <div class="background">
+        <nav class="navbar">
+            <div class="nav-title">PlantPal</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-box">
+                <h1>Welcome to <span class="highlight">PlantPal</span></h1>
+                <div class="buttons">
+                    <a href="#" class="btn">Sign Up</a>
+                    <a href="#" class="btn">Sign In</a>
+                </div>
+            </div>
         </div>
 
-        <img src="../Resources/Images/watering_can.png" class="image_watering_can">
+        <footer class="footer">
+            <p class="footer-title">PlantPal</p>
+            <div class="footer-links">
+                <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+                <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+                <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact"
+                        class="footer-icon"></a>
+            </div>
+            <p class="footer-copy">&copy; 2025 PlantPal. All rights reserved.</p>
+        </footer>
     </div>
-
-    <footer class="footer">
-        <p class="footer-title">PlantPal</p>
-
-        <div class="footer-links">
-            <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
-            <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
-            <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon"></a>
-        </div>
-
-        <p class="footer-copy">&copy; 2025 PlantPal. All rights reserved.</p>
-    </footer>
-
 </body>
 
 </html>
