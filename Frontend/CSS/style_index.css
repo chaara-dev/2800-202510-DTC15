@@ -144,6 +144,11 @@ h1 {
     height: auto;
 }
 
+.footer-icon:hover {
+    transform: scale(1.2);
+    filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
+  } 
+  
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;
@@ -197,8 +202,9 @@ h1 {
     
 
     .footer-icon {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         margin: 0 5px;
     }
+    
 }
