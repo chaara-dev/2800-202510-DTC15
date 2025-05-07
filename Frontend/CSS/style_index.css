@@ -1,74 +1,101 @@
-body, html {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+html {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;  /* ✅ prevent horizontal scrolling */
     font-family: 'Poppins', sans-serif;
     height: 100%;
     color: #f4f4f4;
-  }
-  
-  .background {
+}
+
+.background {
     background: url('../Resources/Images/leaves_background.png') no-repeat center center fixed;
     background-size: cover;
     position: relative;
     min-height: 100vh;
-  }
-  
-  .navbar {
+}
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    /* Allows wrapping on small screens */
     padding: 1rem 2rem;
     background-color: rgba(0, 51, 0, 0.7);
     color: white;
     position: sticky;
     top: 0;
     z-index: 10;
-  }
-  
-  .nav-title {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    margin-left: auto;
+    /* Pushes it to the right */
+}
+
+.nav-title {
     font-size: 1.8rem;
     font-weight: 600;
-  }
-  
-  .nav-links a {
+}
+
+.nav-links a {
     color: #ffffff;
     margin-left: 1.5rem;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a:hover {
     color: #a6e3a1;
-  }
-  
-  .main-content {
+}
+
+.main-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 150px);
     text-align: center;
-  }
-  
-  .content-box {
+}
+
+.content-box {
     background-color: rgba(0, 51, 0, 0.6);
     padding: 3rem 2rem;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     max-width: 400px;
     width: 90%;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 2rem;
     margin-bottom: 2rem;
-  }
-  
-  .highlight {
+}
+
+.highlight {
     color: #a6e3a1;
-  }
-  
-  .buttons .btn {
+}
+
+.buttons .btn {
     display: inline-block;
     margin: 10px;
     padding: 0.7rem 1.5rem;
@@ -78,12 +105,70 @@ body, html {
     text-decoration: none;
     font-weight: 600;
     transition: background 0.3s ease;
-  }
-  
-  .buttons .btn:hover {
+}
+
+.buttons .btn:hover {
     background-color: #8cd18b;
-  }
-  
-  .image_watering_can {
-    display: none; /* hidden for now unless you want to reposition it */
-  }
+}
+
+.image_watering_can {
+    display: none;
+    /* hidden for now unless you want to reposition it */
+}
+
+
+.content-box,
+.buttons,
+.footer {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.footer-icon {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 51, 0, 0.7);
+        /* Match navbar background */
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 0.5rem 0;
+    }
+
+
+    .content-box h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-icon {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+    }
+}
