@@ -1,0 +1,106 @@
+:root {
+    --primary-green: #2e856e;
+    --light-green: #e6f2ef;
+    --accent-green: #38a169;
+    --text-dark: #2d3748;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #f0fff4, #ffffff);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text-dark);
+}
+
+.profile-header {
+    text-align: right;
+    padding: 10px 0;
+}
+
+.profile-link {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.profile-icon {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.icon-circle {
+    background-color: var(--light-green);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle i {
+    color: var(--primary-green);
+    font-size: 2rem;
+}
+
+.settings-menu {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-green);
+}
+
+.menu-item i {
+    width: 24px;
+    color: var(--primary-green);
+    margin-right: 15px;
+    font-size: 1.1rem;
+}
+
+.menu-item span {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+    .menu-item {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+    }
+
+    .profile-link {
+        font-size: 0.8rem;
+    }
+}
