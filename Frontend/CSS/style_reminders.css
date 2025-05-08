@@ -1,6 +1,19 @@
 .content-wrapper {
     color: black;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 1.25em;
+}
+
+
+.reminder-header {
+    text-align: center;
+    font-size: 2em;
+    line-height: 150%;
+}
+
+#nextReminder {
+    color: darkgreen;
+    font-weight: bold;
+}
 }
