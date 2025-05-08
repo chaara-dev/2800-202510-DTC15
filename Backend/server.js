@@ -64,14 +64,18 @@ async function main() {
   });
 
   app.post("/HTML/login", async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, remember } = req.body;
 
     const localUser = usersArr.find(
       (u) => u.username === username && u.password === password
     );
     if (localUser) {
       req.session.user = localUser;
-      addToTimeline("index", "User logged in (local)", new Date(), username);
+      if (remember) {
+        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+      } else {
+        req.session.cookie.expires = false;
+      }
       return res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
     }
 
@@ -82,7 +86,15 @@ async function main() {
     if (!match) return res.status(401).send("Invalid credentials");
 
     req.session.user = { username: dbUser.username, isAdmin: dbUser.isAdmin };
-    addToTimeline("index", "User logged in (db)", new Date(), username);
+
+    if (remember) {
+      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+    } else {
+      req.session.cookie.expires = false;
+    }
+
+    
+
     res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
   });
 
@@ -101,7 +113,6 @@ async function main() {
     await newUser.save();
 
     req.session.user = { username, isAdmin: false };
-    addToTimeline("signup", "New user created", new Date(), username);
     res.redirect("/home");
   });
 
@@ -133,12 +144,13 @@ async function main() {
     }
   });
 
+  addToTimeline("signup", "New user created", new Date(), username);
+
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
     const username = req.session.user.username;
     try {
       const result = await favoritesModel.create({ name: favorite, username });
-      addToTimeline("Added Favorite", favorite, new Date(), username);
       res.json(result);
     } catch (err) {
       console.log("db error", err);
