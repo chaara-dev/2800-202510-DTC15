@@ -14,3 +14,35 @@ body > main {
 .content-wrapper {
     flex: 1;
   }
+
+  
+.logout-button a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0rem;
+    padding: 0.5rem 1rem;
+    margin-left: 20px;
+}
+
+
+.logout-button a {
+    background-color: rgba(19, 93, 19, 0.7);
+    border-radius: 5px;
+    font-weight: bolder;
+    transition: background 0.3s ease;
+}
+
+.logout-button a:hover {
+    background-color: #b71c1c;
+}
+
+@media (max-width: 768px) {
+    .logout-button a {
+        color: white;
+        text-decoration: none;
+        margin: 0 0rem;
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+}
