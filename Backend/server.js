@@ -100,10 +100,10 @@ async function main() {
 
   app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
-
+  
     const existingUser = await userModel.findOne({ username });
     if (existingUser) return res.send("Username already exists");
-
+  
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
       username,
@@ -111,8 +111,9 @@ async function main() {
       isAdmin: false,
     });
     await newUser.save();
-
+  
     req.session.user = { username, isAdmin: false };
+    await addToTimeline("signup", "New user created", new Date(), username); 
     res.redirect("/home");
   });
 
@@ -143,8 +144,6 @@ async function main() {
       console.log("db error", err);
     }
   });
-
-  addToTimeline("signup", "New user created", new Date(), username);
 
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
