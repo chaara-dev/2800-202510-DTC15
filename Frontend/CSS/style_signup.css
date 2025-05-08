@@ -1,0 +1,77 @@
+.remember-line {
+    display: flex;
+    align-items: baseline; 
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0 1rem;
+    color: #003300;
+    font-family: "Emilys Candy", serif;
+    font-weight: bold;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  .remember-line input[type="checkbox"] {
+    transform: scale(1);
+    accent-color: #003300;
+    position: relative;
+    top: 0.1rem; 
+  }
+  
+  
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+ }
+
+.signup-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2b4c2b;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.signup-container button {
+    background-color: #a3d9a5;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+    background-color: #89c38d;
+}
+
+.back-link {
+    margin-top: 1rem;
+    text-align: center;
+    display: block;
+    color: #2b4c2b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
