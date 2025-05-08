@@ -33,8 +33,10 @@
     width: 90%;
     margin: 5px;
     border-radius: 15px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+
+    border: 1px solid green;
 }
 
 .reminder-body>img {
