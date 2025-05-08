@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantPal Sign Up</title>
+  <link rel="stylesheet" href="../CSS/style_index.css" />
+  <link rel="stylesheet" href="../CSS/style_signup.css" />
+  <link rel="stylesheet" href="../CSS/style_footer.css" />
+  <link href="https://fonts.googleapis.com">
+<link href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+  rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <nav class="navbar">
+      <div class="nav-title">PlantPal</div>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-box signup-container">
+        <h2>Create Your PlantPal Account</h2>
+        <form action="/signup" method="POST" class="signup-form">
+          <div class="form-group">
+            <input type="text" name="username" placeholder="Username" required />
+          </div>
+          <div class="form-group">
+            <input type="password" name="password" placeholder="Password" required />
+          </div>
+          <div class="form-group">
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
+        <a href="login.html" class="back-link">Back to Login</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <p class="footer-title">PlantPal</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon" /></a>
+        <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon" /></a>
+        <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon" /></a>
+      </div>
+      <p class="footer-copy">&copy; 2025 PlantPal. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="../../scripts/script.js"></script>
+</body>
+</html>
