@@ -16,4 +16,29 @@
     color: darkgreen;
     font-weight: bold;
 }
+
+.reminder-body {
+    background-color: lightblue;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+.reminder {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3.5em;
+    width: 90%;
+    margin: 5px;
+    border-radius: 15px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.reminder>img {
+    height: 50%;
 }
