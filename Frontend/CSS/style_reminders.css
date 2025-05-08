@@ -17,14 +17,14 @@
     font-weight: bold;
 }
 
-.reminder-body {
+.reminder-list {
     display: flex;
     flex-direction: column;
     padding: 10px;
     align-items: center;
 }
 
-.reminder {
+.reminder-body {
     background-color: lightgray;
     display: flex;
     flex-direction: row;
@@ -37,6 +37,19 @@
     padding-right: 5%;
 }
 
-.reminder>img {
+.reminder-body>img {
     height: 50%;
+    margin-right: 1em;
+}
+
+.reminderTime {
+    margin-left: auto;
+}
+
+.reminder-toggle {
+    margin-left: 1em;
+}
+
+.reminder-footer {
+    background-color: lightpink;
 }
