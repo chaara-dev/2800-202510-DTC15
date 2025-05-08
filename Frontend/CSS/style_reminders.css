@@ -18,8 +18,6 @@
 }
 
 .reminder-body {
-    background-color: lightblue;
-
     display: flex;
     flex-direction: column;
     padding: 10px;
