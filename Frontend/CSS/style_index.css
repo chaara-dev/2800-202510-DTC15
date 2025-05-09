@@ -9,7 +9,6 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* ✅ prevent horizontal scrolling */
     font-family: "Emilys Candy", serif;
     font-weight: 400;
     font-style: normal;
@@ -31,7 +30,6 @@ html {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    /* Allows wrapping on small screens */
     padding: 1rem 2rem;
     background-color: rgba(0, 51, 0, 0.7);
     color: white;
@@ -49,7 +47,7 @@ html {
     cursor: pointer;
     color: white;
     margin-left: auto;
-    /* Pushes it to the right */
+    
 }
 
 .nav-title {
@@ -96,7 +94,7 @@ html {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     max-width: 400px;
     width: 90%;
-    max-height: 90vh; /* Prevents it from going off screen */
+    max-height: 90vh; 
     overflow-y: auto;
 }
 
@@ -126,10 +124,6 @@ h1 {
     background-color: #8cd18b;
 }
 
-.image_watering_can {
-    display: none;
-    /* hidden for now unless you want to reposition it */
-}
 
 
 .content-box,
@@ -154,7 +148,7 @@ h1 {
         flex-direction: row;
         align-items: center;
         position: relative;
-        /* Needed for absolute positioning of dropdown */
+       
     }
 
     .menu-toggle {
@@ -176,7 +170,7 @@ h1 {
 
     .nav-links.active {
         max-height: 500px;
-        /* Large enough to fit all links */
+        
     }
 
     .nav-links a {

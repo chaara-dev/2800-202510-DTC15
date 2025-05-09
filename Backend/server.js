@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
+const bcrypt = require("bcrypt");
 
 const favoritesSchema = new mongoose.Schema({
   name: String,
@@ -17,6 +18,13 @@ const timelineSchema = new mongoose.Schema({
 });
 const timelineModel = mongoose.model("timeline", timelineSchema);
 
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  isAdmin: Boolean,
+});
+const userModel = mongoose.model("users", userSchema);
+
 main().catch((err) => console.log(err));
 
 async function main() {
@@ -25,9 +33,7 @@ async function main() {
   const app = express();
   const port = 3000;
 
-  // Serve static files from Frontend folder
   app.use(express.static(path.join(__dirname, "../Frontend")));
-
   app.use(express.urlencoded({ extended: true }));
   app.use(
     session({
@@ -57,15 +63,58 @@ async function main() {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/login.html"));
   });
 
-  app.post("/HTML/login", (req, res) => {
-    const { username, password } = req.body;
-    const user = usersArr.find(
+  app.post("/HTML/login", async (req, res) => {
+    const { username, password, remember } = req.body;
+
+    const localUser = usersArr.find(
       (u) => u.username === username && u.password === password
     );
-    if (!user) return res.status(401).send("Invalid credentials");
-    req.session.user = user;
-    addToTimeline("index", "User logged in", new Date(), user.username);
-    res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html")); // Or another main page
+    if (localUser) {
+      req.session.user = localUser;
+      if (remember) {
+        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+      } else {
+        req.session.cookie.expires = false;
+      }
+      return res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
+    }
+
+    const dbUser = await userModel.findOne({ username });
+    if (!dbUser) return res.status(401).send("Invalid credentials");
+
+    const match = await bcrypt.compare(password, dbUser.password);
+    if (!match) return res.status(401).send("Invalid credentials");
+
+    req.session.user = { username: dbUser.username, isAdmin: dbUser.isAdmin };
+
+    if (remember) {
+      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+    } else {
+      req.session.cookie.expires = false;
+    }
+
+    
+
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
+  });
+
+  app.post("/signup", async (req, res) => {
+    const { username, password } = req.body;
+  
+    const existingUser = await userModel.findOne({ username });
+    if (existingUser) return res.send("Username already exists");
+  
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new userModel({
+      username,
+      password: hashedPassword,
+      isAdmin: false,
+    });
+    await newUser.save();
+  
+    req.session.user = { username, isAdmin: false };
+    await addToTimeline("signup", "New user created", new Date(), username); 
+    res.redirect("/home");
   });
 
   app.use(isAuthenticated);
@@ -101,7 +150,6 @@ async function main() {
     const username = req.session.user.username;
     try {
       const result = await favoritesModel.create({ name: favorite, username });
-      addToTimeline("Added Favorite", favorite, new Date(), username);
       res.json(result);
     } catch (err) {
       console.log("db error", err);
