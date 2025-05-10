@@ -7,20 +7,38 @@
     <title>PlantPal - Add New Plant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="css/add_plant.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-emerald-50">
     <div class="container mx-auto px-4 py-8 max-w-md">
-        <h1 class="text-3xl font-bold text-center mb-8">Add New Plant</h1>
+        <h1 class="text-3xl font-bold text-center text-emerald-800 mb-8">Add New Plant</h1>
 
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-emerald-100">
             <form>
                 <div class="mb-6">
                     <label for="plant-name" class="block text-emerald-700 font-medium mb-2">
                         Plant Name
                     </label>
-                    <input type="text" id="plant-name" class="w-full px-4 py-2 rounded-lg border border-emerald-300"
+                    <input type="text" id="plant-name"
+                        class="w-full px-4 py-2 rounded-lg border border-emerald-300 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500"
                         placeholder="e.g. Monstera" required>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-emerald-700 font-medium mb-2">
+                        Plant Photo (Optional)
+                    </label>
+                    <div class="flex items-center justify-center w-full">
+                        <label
+                            class="flex flex-col items-center justify-center w-full h-32 border-2 border-emerald-300 border-dashed rounded-lg cursor-pointer bg-emerald-50">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fas fa-camera text-emerald-500 text-2xl mb-2"></i>
+                                <p class="text-sm text-emerald-500">Click to upload</p>
+                            </div>
+                            <input id="plant-photo" type="file" class="hidden" accept="image/*">
+                        </label>
+                    </div>
                 </div>
             </form>
         </div>
