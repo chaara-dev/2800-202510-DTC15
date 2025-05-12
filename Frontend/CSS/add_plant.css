@@ -1,0 +1,17 @@
+input:focus {
+    outline: none;
+    border-color: #34d399;
+    box-shadow: 0 0 0 2px #a7f3d0;
+}
+input[type="file"]+label:hover {
+    background-color: #d1fae5;
+    border-color: #34d399;
+}
+button:active {
+    transform: scale(0.98);
+}
+
+button,
+input[type="file"]+label {
+    transition: all 0.2s ease;
+}

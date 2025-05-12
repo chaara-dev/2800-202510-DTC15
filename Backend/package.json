@@ -1,0 +1,27 @@
+{
+  "name": "2800-202510-dtc15",
+  "version": "1.0.0",
+  "description": "DTC-15\r Team Members: \r - Gurman \r - Koko\r - Chara\r - Petar\r - Niga\r ## More details to come\r TBA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaara-dev/2800-202510-DTC15.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chaara-dev/2800-202510-DTC15/issues"
+  },
+  "homepage": "https://github.com/chaara-dev/2800-202510-DTC15#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.14.1"
+  }
+}
