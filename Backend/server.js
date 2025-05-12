@@ -33,6 +33,10 @@ async function main() {
   const app = express();
   const port = 3000;
 
+  app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../Frontend"));
+
+
   app.use(express.static(path.join(__dirname, "../Frontend")));
   app.use(express.urlencoded({ extended: true }));
   app.use(
@@ -71,12 +75,11 @@ async function main() {
     );
     if (localUser) {
       req.session.user = localUser;
-      if (remember) {
-        req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
-      } else {
-        req.session.cookie.expires = false;
-      }
-      return res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
+      req.session.cookie.maxAge = remember
+        ? 7 * 24 * 60 * 60 * 1000
+        : null;
+
+      return res.redirect("/home");
     }
 
     const dbUser = await userModel.findOne({ username });
@@ -86,24 +89,19 @@ async function main() {
     if (!match) return res.status(401).send("Invalid credentials");
 
     req.session.user = { username: dbUser.username, isAdmin: dbUser.isAdmin };
+    req.session.cookie.maxAge = remember
+      ? 7 * 24 * 60 * 60 * 1000
+      : null;
 
-    if (remember) {
-      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
-    } else {
-      req.session.cookie.expires = false;
-    }
-
-    
-
-    res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
+    res.redirect("/home");
   });
 
   app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
-  
+
     const existingUser = await userModel.findOne({ username });
     if (existingUser) return res.send("Username already exists");
-  
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
       username,
@@ -111,17 +109,19 @@ async function main() {
       isAdmin: false,
     });
     await newUser.save();
-  
+
     req.session.user = { username, isAdmin: false };
-    await addToTimeline("signup", "New user created", new Date(), username); 
+    await addToTimeline("signup", "New user created", new Date(), username);
     res.redirect("/home");
   });
 
   app.use(isAuthenticated);
 
   app.get("/home", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend/HTML/index.html"));
+    const username = req.session.user?.username;
+    res.render("HTML/index", { username });
   });
+
 
   app.get("/favorites", async (req, res) => {
     try {

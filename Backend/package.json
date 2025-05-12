@@ -4,6 +4,7 @@
   "description": "DTC-15\r Team Members: \r - Gurman \r - Koko\r - Chara\r - Petar\r - Niga\r ## More details to come\r TBA",
   "main": "index.js",
   "scripts": {
+    "start": "node Backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
