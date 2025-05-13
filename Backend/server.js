@@ -35,7 +35,6 @@ async function main() {
 
   app.use(express.static("public"));
 
-  
   const port = process.env.PORT || 3000;
 
 
@@ -68,6 +67,10 @@ app.set("views", path.join(__dirname, "../Frontend"));
       : res.redirect("/HTML/login.html");
 
   app.get("/", (_req, res) => res.redirect("/home"));
+
+  app.get("/location", (_req, res) => {
+  res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
+});
 
   app.get("/HTML/login", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/login.html"));
