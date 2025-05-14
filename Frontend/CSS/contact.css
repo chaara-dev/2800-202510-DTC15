@@ -1,0 +1,31 @@
+nav a {
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+h1 i {
+    transition: transform 0.3s ease;
+}
+
+h1:hover i {
+    transform: translateY(-3px);
+}
+.contact-method {
+    transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-icon {
+    background-color: #3b82f6;
+    color: white;
+}

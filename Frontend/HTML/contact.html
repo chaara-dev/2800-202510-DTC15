@@ -6,10 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - PlantPal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="../CSS/contact.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-blue-50">
+    <nav class="bg-blue-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold flex items-center">
+                <i class="fas fa-leaf mr-2"></i>
+                PlantPal
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="font-semibold border-b-2 border-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-blue-800 mb-2">
+                <i class="fas fa-envelope mr-2"></i>Contact Us
+            </h1>
+            <p class="text-blue-600">We'd love to hear from you!</p>
+        </div>
+    
+        <div class="bg-white p-8 rounded-xl shadow-md">
+            <h2 class="text-xl font-semibold text-blue-800 mb-6">
+                <i class="fas fa-info-circle mr-2"></i> Our Information
+            </h2>
+        
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-blue-800">Address</h3>
+                        <p class="text-gray-600">Vancouver, British Columbia, Canada</p>
+                    </div>
+                </div>
+        
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-phone-alt text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-blue-800">Phone</h3>
+                        <p class="text-gray-600">123-456-7890</p>
+                    </div>
+                </div>
+        
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-blue-800">Email</h3>
+                        <p class="text-gray-600">info@plantpal.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </main>
 </body>
 
 </html>
