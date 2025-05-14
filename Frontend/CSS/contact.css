@@ -1,31 +1,52 @@
-nav a {
-    transition: opacity 0.3s ease;
+.contact-icon-wrapper {
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-nav a:hover {
-    opacity: 0.8;
+.contact-icon-wrapper:hover {
+    transform: scale(1.1);
+    background-color: #2dd4bf;
 }
 
-h1 i {
-    transition: transform 0.3s ease;
+input,
+textarea {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-h1:hover i {
-    transform: translateY(-3px);
-}
-.contact-method {
-    transition: transform 0.3s ease;
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
 }
 
-.contact-method:hover {
-    transform: translateX(5px);
+button[type="submit"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
-.contact-icon {
-    transition: all 0.3s ease;
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-section {
+        padding: 1.5rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-icon {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
 }
 
-.contact-method:hover .contact-icon {
-    background-color: #3b82f6;
-    color: white;
+.business-hours i {
+    transition: color 0.3s ease;
+}
+
+.business-hours:hover i {
+    color: #f87171;
 }
