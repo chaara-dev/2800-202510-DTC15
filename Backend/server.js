@@ -139,36 +139,6 @@ app.set("views", path.join(__dirname, "../Frontend"));
     res.redirect("/home");
   });
 
-  app.use(isAuthenticated);
-
-  app.get("/home", (req, res) => {
-    const username = req.session.user?.username;
-    res.render("HTML/index", { username });
-  });
-
-
-  app.get("/favorites", async (req, res) => {
-    try {
-      const favoritesFound = await favoritesModel.find({
-        username: req.session.user.username,
-      });
-      res.json(favoritesFound);
-    } catch (err) {
-      console.log("db error", err);
-    }
-  });
-
-  app.get("/timeline", async (req, res) => {
-    try {
-      const timelineFound = await timelineModel.find({
-        username: req.session.user.username,
-      });
-      res.json(timelineFound);
-    } catch (err) {
-      console.log("db error", err);
-    }
-  });
-
   app.get('/api/plants/:name', async (req, res) => {
   const plantName = req.params.name;
   const token = process.env.TREFLE_TOKEN;
@@ -202,6 +172,38 @@ app.set("views", path.join(__dirname, "../Frontend"));
   }
 });
 
+
+  app.use(isAuthenticated);
+
+  app.get("/home", (req, res) => {
+    const username = req.session.user?.username;
+    res.render("HTML/index", { username });
+  });
+
+
+  app.get("/favorites", async (req, res) => {
+    try {
+      const favoritesFound = await favoritesModel.find({
+        username: req.session.user.username,
+      });
+      res.json(favoritesFound);
+    } catch (err) {
+      console.log("db error", err);
+    }
+  });
+
+  app.get("/timeline", async (req, res) => {
+    try {
+      const timelineFound = await timelineModel.find({
+        username: req.session.user.username,
+      });
+      res.json(timelineFound);
+    } catch (err) {
+      console.log("db error", err);
+    }
+  });
+
+  
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
     const username = req.session.user.username;

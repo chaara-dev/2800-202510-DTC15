@@ -96,8 +96,10 @@
 
                 const data = await res.json();
 
+                const interpretedSunlight = interpretSunlight(data.sunlight);
+
                 sciNameEl.textContent = data.scientific_name || '—';
-                sunlightEl.textContent = interpretSunlight(data.sunlight);
+                sunlightEl.textContent = interpretedSunlight;
                 wateringEl.textContent = data.watering || '—';
                 durationEl.textContent = data.duration || '—';
 
