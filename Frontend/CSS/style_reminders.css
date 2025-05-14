@@ -53,5 +53,24 @@
 }
 
 .reminder-footer {
-    background-color: lightpink;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+#addReminder {
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid green;
+}
+
+#addReminder>span {
+    font-weight: bold;
+}
+
+#addReminder:hover {
+    background-color: rgb(158, 158, 158);
+    cursor: pointer;
 }
