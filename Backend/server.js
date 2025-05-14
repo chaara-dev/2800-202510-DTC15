@@ -143,19 +143,30 @@ app.set("views", path.join(__dirname, "../Frontend"));
   const plantName = req.params.name;
   const token = process.env.TREFLE_TOKEN;
 
+  console.log(`Fetching plant info for: ${plantName}`);
+
+
+  if (!token) {
+    console.error("Missing TREFLE_TOKEN in environment!");
+    return res.status(500).send("Trefle API key not configured on server.");
+  }
+
   try {
     const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
     const searchRes = await axios.get(searchUrl);
 
-    if (searchRes.data.data.length === 0) {
+    if (!searchRes.data.data || searchRes.data.data.length === 0) {
+      console.warn(`No plant found for query: "${plantName}"`);
       return res.status(404).send("Plant not found");
     }
+
 
     const plantSlug = searchRes.data.data[0].slug;
     const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
     const detailRes = await axios.get(detailUrl);
 
     const plant = detailRes.data.data;
+
     const plantInfo = {
       common_name: plant.common_name,
       scientific_name: plant.scientific_name,
@@ -165,12 +176,15 @@ app.set("views", path.join(__dirname, "../Frontend"));
       duration: plant.main_species?.duration || null
     };
 
+    console.log("Plant info fetched:", plantInfo);
+
     res.json(plantInfo);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error retrieving plant info");
+  } catch (err) {
+    console.error("Error fetching from Trefle:", err.response?.data || err.message);
+    res.status(500).send("Error fetching plant info from Trefle API");
   }
 });
+
 
 
   app.use(isAuthenticated);
