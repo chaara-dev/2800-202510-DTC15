@@ -4,6 +4,21 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bcrypt = require("bcrypt");
 
+require('dotenv').config();
+const axios = require('axios');
+
+const plantSchema = new mongoose.Schema({
+  name: String,
+  scientific_name: String,
+  sunlight: String,
+  watering: String,
+  duration: String,
+  username: String, 
+});
+
+const plantModel = mongoose.model("plants", plantSchema);
+
+
 const favoritesSchema = new mongoose.Schema({
   name: String,
   username: String,
@@ -153,6 +168,39 @@ app.set("views", path.join(__dirname, "../Frontend"));
       console.log("db error", err);
     }
   });
+
+  app.get('/api/plants/:name', async (req, res) => {
+  const plantName = req.params.name;
+  const token = process.env.TREFLE_TOKEN;
+
+  try {
+    const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
+    const searchRes = await axios.get(searchUrl);
+
+    if (searchRes.data.data.length === 0) {
+      return res.status(404).send("Plant not found");
+    }
+
+    const plantSlug = searchRes.data.data[0].slug;
+    const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
+    const detailRes = await axios.get(detailUrl);
+
+    const plant = detailRes.data.data;
+    const plantInfo = {
+      common_name: plant.common_name,
+      scientific_name: plant.scientific_name,
+      family: plant.family_common_name,
+      sunlight: plant.main_species?.growth?.light || null,
+      watering: plant.main_species?.growth?.moisture_use || null,
+      duration: plant.main_species?.duration || null
+    };
+
+    res.json(plantInfo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving plant info");
+  }
+});
 
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
