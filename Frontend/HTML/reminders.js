@@ -35,3 +35,33 @@ async function loadReminders() {
         console.error("Something went wrong. Failed to load reminders.")
     }
 }
+
+async function addReminderPrompt() {
+    const plantName = prompt("Enter plant name:")
+    if (!plantName) return
+
+    const action = prompt("Enter action (e.g., Water, Prune):");
+    if (!action) return;
+
+    const timeOfDay = prompt("Enter time to be reminded (24h format: HH:mm):")
+    if (!/^\d{2}:\d{2}$/.test(timeOfDay)) {
+        alert("Invalid time format. Use HH:mm");
+        return;
+    }
+
+    try {
+        const res = await fetch("/reminders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ plantName, action, timeOfDay })
+        });
+
+        if (!res.ok) throw new Error("Failed to add reminder");
+        await loadReminders();
+    } catch (err) {
+        console.error("Error adding reminder:", err);
+        alert("Failed to add reminder.");
+    }
+}
