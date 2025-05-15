@@ -23,6 +23,13 @@ async function loadReminders() {
         <label class="reminder-toggle"><input type="checkbox" /></label>
       `;
             container.appendChild(div)
+
+            const timeDiff = reminderTime.getTime() - now.getTime();
+            if (timeDiff > 0) {
+                setTimeout(() => {
+                    alert(`Reminder: ${reminder.action} ${reminder.plantName}`);
+                }, timeDiff);
+            }
         });
     } catch {
         console.error("Something went wrong. Failed to load reminders.")
