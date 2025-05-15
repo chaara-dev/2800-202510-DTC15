@@ -25,6 +25,15 @@ const userSchema = new mongoose.Schema({
 });
 const userModel = mongoose.model("users", userSchema);
 
+const reminderSchema = new mongoose.Schema({
+  username: String,
+  plantName: String,
+  action: String,
+  time: Date,
+});
+const reminderModel = mongoose.model("reminders", reminderSchema);
+
+
 main().catch((err) => console.log(err));
 
 async function main() {
@@ -39,7 +48,7 @@ async function main() {
 
 
   app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../Frontend"));
+  app.set("views", path.join(__dirname, "../Frontend"));
 
 
   app.use(express.static(path.join(__dirname, "../Frontend")));
@@ -69,8 +78,8 @@ app.set("views", path.join(__dirname, "../Frontend"));
   app.get("/", (_req, res) => res.redirect("/home"));
 
   app.get("/location", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
-});
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
+  });
 
   app.get("/HTML/login", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/login.html"));
