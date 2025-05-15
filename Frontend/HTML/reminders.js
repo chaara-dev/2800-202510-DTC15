@@ -10,6 +10,18 @@ async function loadReminders() {
 
         reminders.forEach(reminder => {
             const reminderTime = new Date(reminder.time);
+
+            const div = document.createElement("div");
+            div.className = "reminder-body";
+            div.innerHTML = `
+        <img src="../Resources/Icons/notifications.png">
+        <span class="reminderAction">${reminder.action}</span>
+        &nbsp;
+        <span class="reminderName">${reminder.plantName}</span>
+        &nbsp;
+        <span class="reminderTime">${reminderTime}</span>
+        <label class="reminder-toggle"><input type="checkbox" /></label>
+      `;
         });
     } catch {
 
