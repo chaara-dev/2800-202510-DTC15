@@ -12,22 +12,27 @@ async function loadReminders() {
 
         reminders.forEach(reminder => {
             const [hours, minutes] = reminder.timeOfDay.split(":").map(Number);
-            const todayReminderTime = new Date(now);
-            todayReminderTime.setHours(hours, minutes, 0, 0);
+            const now = new Date();
+            let firstReminder = new Date(now)
+            firstReminder.setHours(hours, minutes, 0, 0)
 
-            if (todayReminderTime < now) {
-                todayReminderTime.setDate(todayReminderTime.getDate() + 1);
+            if (firstReminder < now) {
+                firstReminder.setDate(firstReminder.getDate() + 1)
             }
 
-            const timeDiff = todayReminderTime.getTime() - now.getTime();
+            const firstTimeout = firstReminder.getTime() - now.getTime()
 
             setTimeout(() => {
-                alert(`Reminder: ${reminder.action} ${reminder.plantName}`);
-            }, timeDiff);
+                alert(`Reminder: ${reminder.action} ${reminder.plantName}!`)
 
-            if (timeDiff < soonestDiff) {
-                soonestDiff = timeDiff;
-                soonestTime = todayReminderTime;
+                setInterval(() => {
+                    alert(`Reminder: ${reminder.action} ${reminder.plantName}`)
+                }, 24 * 60 * 60 * 1000);
+            }, firstTimeout);
+
+            if (firstTimeout < soonestDiff) {
+                soonestDiff = firstTimeout;
+                soonestTime = firstReminder;
             }
 
             const div = document.createElement("div");
