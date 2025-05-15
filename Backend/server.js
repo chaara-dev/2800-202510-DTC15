@@ -43,6 +43,7 @@ async function main() {
   const app = express();
 
   app.use(express.static("public"));
+  app.use(express.json())
 
   const port = process.env.PORT || 3000;
 
@@ -158,6 +159,15 @@ async function main() {
         username: req.session.user.username,
       });
       res.json(timelineFound);
+    } catch (err) {
+      console.log("db error", err);
+    }
+  });
+
+  app.get("/reminders", async (req, res) => {
+    try {
+      const reminders = await reminderModel.find({ username: req.session.user.username });
+      res.json(reminders);
     } catch (err) {
       console.log("db error", err);
     }
