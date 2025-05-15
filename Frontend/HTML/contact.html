@@ -11,22 +11,22 @@
             theme: {
                 extend: {
                     colors: {
-                        teal: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            200: '#99f6e4',
-                            300: '#5eead4',
-                            400: '#2dd4bf',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                            900: '#134e4a',
+                        green: {
+                            50: '#f0fff4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
                         },
-                        coral: {
-                            400: '#fca5a5',
-                            500: '#f87171',
-                            600: '#ef4444',
+                        gray: {
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
                         }
                     }
                 }
@@ -37,117 +37,110 @@
     <link href="../CSS/contact.css" rel="stylesheet">
 </head>
 
-<body class="bg-teal-50">
-    <!-- Navigation -->
-    <nav class="bg-teal-700 text-white p-4 shadow-lg">
+<body class="bg-green-50">
+    <nav class="bg-green-700 text-white p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-2xl font-bold flex items-center">
-                <i class="fas fa-leaf mr-2 text-teal-200"></i>
-                <span class="text-teal-100">PlantPal</span>
+                <i class="fas fa-leaf mr-2 text-green-200"></i>
+                <span class="text-green-100">PlantPal</span>
             </div>
             <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="hover:text-teal-200">Home</a>
-                <a href="about.html" class="hover:text-teal-200">About</a>
-                <a href="contact.html" class="font-semibold border-b-2 border-coral-400">Contact</a>
+                <a href="index.html" class="hover:text-green-200">Home</a>
+                <a href="about.html" class="hover:text-green-200">About</a>
+                <a href="contact.html" class="font-semibold border-b-2 border-white">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12 max-w-6xl">
         <div class="text-center mb-12">
-            <h1 class="text-3xl font-bold text-teal-800 mb-2">
-                <i class="fas fa-envelope text-coral-500 mr-2"></i>Contact Us
+            <h1 class="text-3xl font-bold text-green-800 mb-2">
+                <i class="fas fa-envelope text-white mr-2"></i>Contact Us
             </h1>
-            <p class="text-teal-600">Get in touch with our plant care experts</p>
+            <p class="text-green-600">Get in touch with our plant care experts</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-            <!-- Contact Information -->
-            <div class="bg-white p-8 rounded-xl shadow-md border border-teal-100">
-                <h2 class="text-xl font-semibold text-teal-800 mb-6 flex items-center">
-                    <i class="fas fa-info-circle text-coral-500 mr-2"></i> Our Information
+            <div class="bg-white p-8 rounded-xl shadow-md border border-green-100">
+                <h2 class="text-xl font-semibold text-black mb-6 flex items-center">
+                    <i class="fas fa-info-circle text-black mr-2"></i> Our Information
                 </h2>
 
                 <div class="space-y-6">
-                    <!-- Address -->
                     <div class="flex items-start">
-                        <div class="bg-teal-100 p-3 rounded-full mr-4 text-teal-600">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-black">
                             <i class="fas fa-map-marker-alt text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-medium text-teal-800">Address</h3>
-                            <p class="text-gray-600">Vancouver, British Columbia, Canada</p>
+                            <h3 class="font-medium text-black">Address</h3>
+                            <p class="text-black">Vancouver, British Columbia, Canada</p>
                         </div>
                     </div>
-
-                    <!-- Phone -->
+                    
                     <div class="flex items-start">
-                        <div class="bg-teal-100 p-3 rounded-full mr-4 text-teal-600">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-black">
                             <i class="fas fa-phone-alt text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-medium text-teal-800">Phone</h3>
-                            <p class="text-gray-600">123-456-7890</p>
+                            <h3 class="font-medium text-black">Phone</h3>
+                            <p class="text-black">123-456-7890</p>
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="flex items-start">
-                        <div class="bg-teal-100 p-3 rounded-full mr-4 text-teal-600">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-black">
                             <i class="fas fa-envelope text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-medium text-teal-800">Email</h3>
-                            <p class="text-gray-600">info@plantpal.com</p>
+                            <h3 class="font-medium text-black">Email</h3>
+                            <p class="text-black">info@plantpal.com</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-8">
-                    <h3 class="font-medium text-teal-800 mb-3">Business Hours</h3>
-                    <p class="text-gray-600"><i class="far fa-clock text-coral-400 mr-2"></i> Monday - Friday: 9AM - 5PM
+                    <h3 class="font-medium text-black mb-3">Business Hours</h3>
+                    <p class="text-black"><i class="far fa-clock text-black mr-2"></i> Monday - Friday: 9AM - 5PM
                     </p>
-                    <p class="text-gray-600"><i class="far fa-clock text-coral-400 mr-2"></i> Saturday: 10AM - 2PM</p>
+                    <p class="text-black"><i class="far fa-clock text-black mr-2"></i> Saturday: 10AM - 2PM</p>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="bg-white p-8 rounded-xl shadow-md border border-teal-100">
-                <h2 class="text-xl font-semibold text-teal-800 mb-6">
-                    <i class="fas fa-paper-plane text-coral-500 mr-2"></i> Send Us a Message
+            <div class="bg-white p-8 rounded-xl shadow-md border border-green-100">
+                <h2 class="text-xl font-semibold text-black mb-6">
+                    <i class="fas fa-paper-plane text-black mr-2"></i> Send Us a Message
                 </h2>
 
                 <form class="space-y-4">
                     <div class="grid md:grid-cols-2 gap-4">
                         <div>
-                            <label for="first-name" class="block text-sm font-medium text-teal-700 mb-1">First
+                            <label for="first-name" class="block text-sm font-medium text-black mb-1">First
                                 Name</label>
                             <input type="text" id="first-name"
-                                class="w-full px-4 py-2 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-200 focus:border-teal-500">
+                                class="w-full px-4 py-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-200 focus:border-green-500 text-black">
                         </div>
                         <div>
-                            <label for="last-name" class="block text-sm font-medium text-teal-700 mb-1">Last
+                            <label for="last-name" class="block text-sm font-medium text-black mb-1">Last
                                 Name</label>
                             <input type="text" id="last-name"
-                                class="w-full px-4 py-2 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-200 focus:border-teal-500">
+                                class="w-full px-4 py-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-200 focus:border-green-500 text-black">
                         </div>
                     </div>
 
                     <div>
-                        <label for="email" class="block text-sm font-medium text-teal-700 mb-1">Email</label>
+                        <label for="email" class="block text-sm font-medium text-black mb-1">Email</label>
                         <input type="email" id="email"
-                            class="w-full px-4 py-2 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-200 focus:border-teal-500">
+                            class="w-full px-4 py-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-200 focus:border-green-500 text-black">
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-medium text-teal-700 mb-1">Message</label>
+                        <label for="message" class="block text-sm font-medium text-black mb-1">Message</label>
                         <textarea id="message" rows="4"
-                            class="w-full px-4 py-2 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-200 focus:border-teal-500"></textarea>
+                            class="w-full px-4 py-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-200 focus:border-green-500 text-black"></textarea>
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-coral-500 hover:bg-coral-600 text-white font-medium py-3 px-4 rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                         <i class="fas fa-paper-plane mr-2"></i> Send Message
                     </button>
                 </form>
@@ -155,8 +148,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-teal-700 text-white py-8 mt-12">
+    <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2025 PlantPal. All rights reserved.</p>
         </div>
