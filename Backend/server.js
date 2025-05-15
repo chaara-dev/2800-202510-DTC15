@@ -187,6 +187,22 @@ async function main() {
     res.status(200).json(reminder);
   });
 
+  app.delete("/reminders/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const username = req.session.user.username;
+
+      const deleted = await reminderModel.findOneAndDelete({ _id: id, username });
+
+      if (!deleted) return res.status(404).json({ message: "Reminder not found" });
+
+      res.json({ message: "Reminder deleted" });
+    } catch (err) {
+      console.error("Delete failed:", err);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
     const username = req.session.user.username;
