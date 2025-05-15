@@ -173,6 +173,22 @@ async function main() {
     }
   });
 
+  app.post("/reminders", async (req, res) => {
+    try {
+      const { plantName, action, time } = req.body;
+      const reminder = new reminderModel({
+        username: req.session.user.username,
+        plantName,
+        action,
+        time: new Date(time),
+      });
+      await reminder.save();
+      res.status(200).json(reminder);
+    } catch (err) {
+      console.log("db error", err);
+    }
+  });
+
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
     const username = req.session.user.username;
