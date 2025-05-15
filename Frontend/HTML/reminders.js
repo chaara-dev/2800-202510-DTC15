@@ -7,32 +7,55 @@ async function loadReminders() {
         container.innerHTML = ""
 
         const now = new Date()
+        let soonestTime = null
+        let soonestDiff = Infinity
 
         reminders.forEach(reminder => {
-            const reminderTime = new Date(reminder.time);
+            const [hours, minutes] = reminder.timeOfDay.split(":").map(Number);
+            const todayReminderTime = new Date(now);
+            todayReminderTime.setHours(hours, minutes, 0, 0);
+
+            if (todayReminderTime < now) {
+                todayReminderTime.setDate(todayReminderTime.getDate() + 1);
+            }
+
+            const timeDiff = todayReminderTime.getTime() - now.getTime();
+
+            setTimeout(() => {
+                alert(`Reminder: ${reminder.action} ${reminder.plantName}`);
+            }, timeDiff);
+
+            if (timeDiff < soonestDiff) {
+                soonestDiff = timeDiff;
+                soonestTime = todayReminderTime;
+            }
 
             const div = document.createElement("div");
             div.className = "reminder-body";
             div.innerHTML = `
-        <img src="../Resources/Icons/notifications.png">
-        <span class="reminderAction">${reminder.action}</span>
-        &nbsp;
-        <span class="reminderName">${reminder.plantName}</span>
-        &nbsp;
-        <span class="reminderTime">${reminderTime.toLocaleString()}</span>
-        <label class="reminder-toggle"><input type="checkbox" /></label>
-      `;
-            container.appendChild(div)
-
-            const timeDiff = reminderTime.getTime() - now.getTime();
-            if (timeDiff > 0) {
-                setTimeout(() => {
-                    alert(`Reminder: ${reminder.action} ${reminder.plantName}`);
-                }, timeDiff);
-            }
+                <img src="../Resources/Icons/notifications.png">
+                <span class="reminderAction">${reminder.action}</span>
+                &nbsp;
+                <span class="reminderName">${reminder.plantName}</span>
+                &nbsp;
+                <span class="reminderTime">${reminder.timeOfDay}</span>
+                <label class="reminder-toggle"><input type="checkbox" /></label>
+            `;
+            container.appendChild(div);
         });
-    } catch {
-        console.error("Something went wrong. Failed to load reminders.")
+
+        // Next reminder time UI
+        if (soonestTime) {
+            const diffMins = Math.floor(soonestDiff / 60000);
+            const h = Math.floor(diffMins / 60);
+            const m = diffMins % 60;
+            document.getElementById("nextReminder").textContent = `${h} hour${h !== 1 ? "s" : ""} ${m} minute${m !== 1 ? "s" : ""}`;
+        } else {
+            document.getElementById("nextReminder").textContent = "No reminders set";
+        }
+
+    } catch (err) {
+        console.error("Failed to load reminders", err);
     }
 }
 
