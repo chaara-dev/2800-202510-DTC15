@@ -44,8 +44,8 @@ async function loadReminders() {
                 <span class="reminderName">${reminder.plantName}</span>
                 &nbsp;
                 <span class="reminderTime">${reminder.timeOfDay}</span>
-                <label class="reminder-toggle"><input type="checkbox" /></label>
-            `;
+                <button class="delete-btn" onclick="deleteReminder('${reminder._id}')">delete</button>
+                `;
             container.appendChild(div);
         });
 
@@ -59,6 +59,23 @@ async function loadReminders() {
         }
     } catch (err) {
         console.error("Failed to load reminders", err);
+    }
+}
+
+async function deleteReminder(id) {
+    if (!confirm("Are you sure you want to delete this reminder?")) return;
+
+    try {
+        const res = await fetch(`/reminders/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!res.ok) throw new Error("Delete failed");
+
+        await loadReminders()
+    } catch (err) {
+        console.error("Error deleting reminder:", err)
+        alert("Failed to delete reminder.")
     }
 }
 
