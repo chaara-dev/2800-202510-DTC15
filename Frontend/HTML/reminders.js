@@ -25,6 +25,6 @@ async function loadReminders() {
             container.appendChild(div)
         });
     } catch {
-
+        console.error("Something went wrong. Failed to load reminders.")
     }
 }
