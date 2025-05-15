@@ -19,7 +19,7 @@ async function loadReminders() {
         &nbsp;
         <span class="reminderName">${reminder.plantName}</span>
         &nbsp;
-        <span class="reminderTime">${reminderTime}</span>
+        <span class="reminderTime">${reminderTime.toLocaleString()}</span>
         <label class="reminder-toggle"><input type="checkbox" /></label>
       `;
         });
