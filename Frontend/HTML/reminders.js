@@ -44,7 +44,6 @@ async function loadReminders() {
             container.appendChild(div);
         });
 
-        // Next reminder time UI
         if (soonestTime) {
             const diffMins = Math.floor(soonestDiff / 60000);
             const h = Math.floor(diffMins / 60);
@@ -53,7 +52,6 @@ async function loadReminders() {
         } else {
             document.getElementById("nextReminder").textContent = "No reminders set";
         }
-
     } catch (err) {
         console.error("Failed to load reminders", err);
     }
