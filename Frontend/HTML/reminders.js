@@ -22,6 +22,7 @@ async function loadReminders() {
         <span class="reminderTime">${reminderTime.toLocaleString()}</span>
         <label class="reminder-toggle"><input type="checkbox" /></label>
       `;
+            container.appendChild(div)
         });
     } catch {
 
