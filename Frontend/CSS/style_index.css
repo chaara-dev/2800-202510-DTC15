@@ -157,7 +157,7 @@ h1 {
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: #c2847a;
+  background-color: #537251;
   color: white;
   border: none;
   border-radius: 50px;
@@ -172,7 +172,10 @@ h1 {
   bottom: 80px;
   right: 20px;
   width: 300px;
-  background-color: #fcf1e1;
+  background-color: rgba(0, 51, 0, 0.6);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
   z-index: 9999;
@@ -191,8 +194,9 @@ h1 {
 #chat-log {
   height: 150px;
   overflow-y: auto;
-  border: 1px solid #ccc;
-  background: white;
+  border: 1px solid #000000;
+  color: #280003;
+  background: rgb(209, 209, 209);
   padding: 5px;
   margin-bottom: 8px;
   border-radius: 5px;

@@ -8,10 +8,8 @@ const bcrypt = require("bcrypt");
 require('dotenv').config();
 const axios = require('axios');
 
-const OpenAI = require("openai");
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+const Groq = require("groq-sdk");
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const plantSchema = new mongoose.Schema({
   name: String,
@@ -209,25 +207,31 @@ async function main() {
   });
 
   // AI Chatbot
-  app.post("/ask-ai", async (req, res) => {
+    app.post("/ask-ai", async (req, res) => {
     const userQuestion = req.body.question;
 
     try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+      const completion = await groq.chat.completions.create({
+        model: "llama3-8b-8192", 
         messages: [
-          { role: "system", content: "Helpful plant care assistant. Provide accurate and friendly plant advice." },
-          { role: "user", content: userQuestion }
-        ]
+          {
+            role: "system",
+            content:
+              "You are PlantPal AI — a friendly assistant that gives helpful and friendly plant care tips.",
+          },
+          { role: "user", content: userQuestion },
+        ],
       });
 
       const answer = completion.choices[0].message.content;
       res.json({ answer });
+
     } catch (err) {
-      console.error("AI error:", err.message);
-      res.status(500).json({ error: "Something went wrong with the AI." });
+      console.error("🔥 GROQ AI Error:", err);
+      res.status(500).json({ answer: "Sorry, PlantPal AI is unavailable right now." });
     }
   });
+
 
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
