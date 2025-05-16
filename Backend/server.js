@@ -1,8 +1,25 @@
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
 const path = require("path");
 const bcrypt = require("bcrypt");
+
+require('dotenv').config();
+const axios = require('axios');
+
+const Groq = require("groq-sdk");
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+const plantSchema = new mongoose.Schema({
+  name: String,
+  scientific_name: String,
+  sunlight: String,
+  watering: String,
+  duration: String,
+  username: String,
+});
+const plantModel = mongoose.model("plants", plantSchema);
 
 const favoritesSchema = new mongoose.Schema({
   name: String,
@@ -25,33 +42,30 @@ const userSchema = new mongoose.Schema({
 });
 const userModel = mongoose.model("users", userSchema);
 
+// Main Logic
 main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI);
 
-
   const app = express();
-
-  app.use(express.static("public"));
-
   const port = process.env.PORT || 3000;
 
-
   app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../Frontend"));
-
-
+  app.set("views", path.join(__dirname, "../Frontend"));
   app.use(express.static(path.join(__dirname, "../Frontend")));
   app.use(express.urlencoded({ extended: true }));
-  app.use(
-    session({
-      secret: "keyboard cat",
-      resave: true,
-      saveUninitialized: true,
-      cookie: { secure: false },
-    })
-  );
+  app.use(express.json());
+
+  app.use(session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    cookie: {
+      secure: false 
+    }
+  }));
 
   const usersArr = [
     { username: "admin1", password: "admin1" },
@@ -66,11 +80,12 @@ app.set("views", path.join(__dirname, "../Frontend"));
       ? next()
       : res.redirect("/HTML/login.html");
 
+  
   app.get("/", (_req, res) => res.redirect("/home"));
 
   app.get("/location", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
-});
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
+  });
 
   app.get("/HTML/login", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/login.html"));
@@ -124,13 +139,50 @@ app.set("views", path.join(__dirname, "../Frontend"));
     res.redirect("/home");
   });
 
+  app.get('/api/plants/:name', async (req, res) => {
+    const plantName = req.params.name;
+    const token = process.env.TREFLE_TOKEN;
+
+    if (!token) {
+      console.error("Missing TREFLE_TOKEN in environment!");
+      return res.status(500).send("Trefle API key not configured on server.");
+    }
+
+    try {
+      const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
+      const searchRes = await axios.get(searchUrl);
+
+      if (!searchRes.data.data || searchRes.data.data.length === 0) {
+        return res.status(404).send("Plant not found");
+      }
+
+      const plantSlug = searchRes.data.data[0].slug;
+      const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
+      const detailRes = await axios.get(detailUrl);
+
+      const plant = detailRes.data.data;
+      const plantInfo = {
+        common_name: plant.common_name,
+        scientific_name: plant.scientific_name,
+        family: plant.family_common_name,
+        sunlight: plant.main_species?.growth?.light || null,
+        watering: plant.main_species?.growth?.moisture_use || null,
+        duration: plant.main_species?.duration || null
+      };
+
+      res.json(plantInfo);
+    } catch (err) {
+      console.error("Error fetching from Trefle:", err.response?.data || err.message);
+      res.status(500).send("Error fetching plant info from Trefle API");
+    }
+  });
+
   app.use(isAuthenticated);
 
   app.get("/home", (req, res) => {
     const username = req.session.user?.username;
     res.render("HTML/index", { username });
   });
-
 
   app.get("/favorites", async (req, res) => {
     try {
@@ -153,6 +205,33 @@ app.set("views", path.join(__dirname, "../Frontend"));
       console.log("db error", err);
     }
   });
+
+  // AI Chatbot
+    app.post("/ask-ai", async (req, res) => {
+    const userQuestion = req.body.question;
+
+    try {
+      const completion = await groq.chat.completions.create({
+        model: "llama3-8b-8192", 
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are PlantPal AI — a friendly assistant that gives helpful and friendly plant care tips.",
+          },
+          { role: "user", content: userQuestion },
+        ],
+      });
+
+      const answer = completion.choices[0].message.content;
+      res.json({ answer });
+
+    } catch (err) {
+      console.error("🔥 GROQ AI Error:", err);
+      res.status(500).json({ answer: "Sorry, PlantPal AI is unavailable right now." });
+    }
+  });
+
 
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;

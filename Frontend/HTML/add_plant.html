@@ -7,7 +7,8 @@
     <title>PlantPal - Add New Plant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="css/add_plant.css" rel="stylesheet">
+    <link href="/CSS/add_plant.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-emerald-50">
@@ -18,14 +19,27 @@
         </header>
 
         <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-emerald-100">
-            <form>
+            <form id="plant-form" method="POST" action="/addplant">
                 <div class="mb-6">
                     <label for="plant-name" class="block text-emerald-700 font-medium mb-2">
                         Plant Name
                     </label>
-                    <input type="text" id="plant-name"
+                    <input type="text" id="plant-name" name="plant_name"
                         class="w-full px-4 py-2 rounded-lg border border-emerald-300 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500"
                         placeholder="e.g. Monstera Deliciosa" required>
+                </div>
+
+                <input type="hidden" name="scientific_name" id="scientific_name_input">
+                <input type="hidden" name="sunlight" id="sunlight_input">
+                <input type="hidden" name="watering" id="watering_input">
+                <input type="hidden" name="duration" id="duration_input">
+
+                <div id="plant-info" class="hidden mb-6 bg-emerald-100 p-4 rounded-lg border border-emerald-300">
+                    <p class="font-semibold text-emerald-700 mb-2">Auto-Filled Plant Info</p>
+                    <p><strong>Scientific Name:</strong> <span id="scientific-name">—</span></p>
+                    <p><strong>Sunlight Requirement:</strong> <span id="sunlight">—</span></p>
+                    <p><strong>Watering:</strong> <span id="watering">—</span></p>
+                    <p><strong>Plant Duration:</strong> <span id="duration">—</span></p>
                 </div>
 
                 <div class="mb-6">
@@ -51,6 +65,65 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const plantNameInput = document.getElementById('plant-name');
+        const plantInfoBox = document.getElementById('plant-info');
+        const sciNameEl = document.getElementById('scientific-name');
+        const sunlightEl = document.getElementById('sunlight');
+        const wateringEl = document.getElementById('watering');
+        const durationEl = document.getElementById('duration');
+
+        let debounceTimeout;
+
+        plantNameInput.addEventListener('input', () => {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(fetchPlantData, 800);
+        });
+
+        async function fetchPlantData() {
+            const plantName = plantNameInput.value.trim();
+            if (plantName.length < 3) {
+                plantInfoBox.classList.add('hidden');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/plants/${plantName}`);
+                if (!res.ok) {
+                    console.warn("Failed to fetch plant data:", res.status);
+                    plantInfoBox.classList.add('hidden');
+                    return;
+                }
+
+                const data = await res.json();
+                const interpretedSunlight = interpretSunlight(data.sunlight);
+
+                sciNameEl.textContent = data.scientific_name || '—';
+                sunlightEl.textContent = interpretedSunlight;
+                wateringEl.textContent = data.watering || '—';
+                durationEl.textContent = data.duration || '—';
+
+                document.getElementById('scientific_name_input').value = data.scientific_name || '';
+                document.getElementById('sunlight_input').value = interpretedSunlight;
+                document.getElementById('watering_input').value = data.watering || '';
+                document.getElementById('duration_input').value = data.duration || '';
+
+                plantInfoBox.classList.remove('hidden');
+            } catch (err) {
+                console.error("Error fetching plant info:", err);
+                plantInfoBox.classList.add('hidden');
+            }
+        }
+
+        function interpretSunlight(lightValue) {
+            if (lightValue == null) return '—';
+            if (lightValue >= 8) return 'Full Sun (8+ hours)';
+            if (lightValue >= 5) return 'Partial Sun (4–7 hours)';
+            if (lightValue >= 2) return 'Shade (2–4 hours)';
+            return 'Low Light (<2 hours)';
+        }
+    </script>
 </body>
 
 </html>
