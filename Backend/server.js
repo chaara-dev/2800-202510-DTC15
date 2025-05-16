@@ -217,6 +217,34 @@ app.set("views", path.join(__dirname, "../Frontend"));
     }
   });
 
+
+  const { Configuration, OpenAIApi } = require("openai");
+
+const openai = new OpenAIApi(new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+}));
+
+app.post("/ask-ai", express.json(), async (req, res) => {
+  const userQuestion = req.body.question;
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "Helpful plant care assistant. Provide accurate and friendly plant advice." },
+        { role: "user", content: userQuestion }
+      ],
+    });
+
+    const answer = completion.data.choices[0].message.content;
+    res.json({ answer });
+
+  } catch (err) {
+    console.error("AI error:", err.message);
+    res.status(500).json({ error: "Something went wrong with the AI." });
+  }
+});
+
   
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;

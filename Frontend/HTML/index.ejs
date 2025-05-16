@@ -58,6 +58,22 @@
     </footer>
   </div>
 
-  <script src="../../scripts/script.js"></script>
+  
+  <button id="chat-toggle" onclick="toggleChat()">Need help?</button>
+
+  <div id="chat-popup" style="display: none;">
+    <div id="chat-header">
+      <span>PlantPal Assistant</span>
+      <button onclick="toggleChat()">✖</button>
+    </div>
+    <div id="chat-log" style="height: 150px; overflow-y: auto;"></div>
+    <input id="user-input" type="text" placeholder="Ask a plant question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+
+  <script src="/scripts/chatbot.js"></script>
+  <script src="/scripts/script.js"></script>
+
 </body>
 </html>
