@@ -1,11 +1,17 @@
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
 const path = require("path");
 const bcrypt = require("bcrypt");
 
 require('dotenv').config();
 const axios = require('axios');
+
+const OpenAI = require("openai");
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 const plantSchema = new mongoose.Schema({
   name: String,
@@ -13,11 +19,9 @@ const plantSchema = new mongoose.Schema({
   sunlight: String,
   watering: String,
   duration: String,
-  username: String, 
+  username: String,
 });
-
 const plantModel = mongoose.model("plants", plantSchema);
-
 
 const favoritesSchema = new mongoose.Schema({
   name: String,
@@ -40,33 +44,30 @@ const userSchema = new mongoose.Schema({
 });
 const userModel = mongoose.model("users", userSchema);
 
+// Main Logic
 main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI);
 
-
   const app = express();
-
-  app.use(express.static("public"));
-
   const port = process.env.PORT || 3000;
 
-
   app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../Frontend"));
-
-
+  app.set("views", path.join(__dirname, "../Frontend"));
   app.use(express.static(path.join(__dirname, "../Frontend")));
   app.use(express.urlencoded({ extended: true }));
-  app.use(
-    session({
-      secret: "keyboard cat",
-      resave: true,
-      saveUninitialized: true,
-      cookie: { secure: false },
-    })
-  );
+  app.use(express.json());
+
+  app.use(session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    cookie: {
+      secure: false 
+    }
+  }));
 
   const usersArr = [
     { username: "admin1", password: "admin1" },
@@ -81,11 +82,12 @@ app.set("views", path.join(__dirname, "../Frontend"));
       ? next()
       : res.redirect("/HTML/login.html");
 
+  
   app.get("/", (_req, res) => res.redirect("/home"));
 
   app.get("/location", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
-});
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
+  });
 
   app.get("/HTML/login", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/login.html"));
@@ -140,52 +142,42 @@ app.set("views", path.join(__dirname, "../Frontend"));
   });
 
   app.get('/api/plants/:name', async (req, res) => {
-  const plantName = req.params.name;
-  const token = process.env.TREFLE_TOKEN;
+    const plantName = req.params.name;
+    const token = process.env.TREFLE_TOKEN;
 
-  console.log(`Fetching plant info for: ${plantName}`);
-
-
-  if (!token) {
-    console.error("Missing TREFLE_TOKEN in environment!");
-    return res.status(500).send("Trefle API key not configured on server.");
-  }
-
-  try {
-    const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
-    const searchRes = await axios.get(searchUrl);
-
-    if (!searchRes.data.data || searchRes.data.data.length === 0) {
-      console.warn(`No plant found for query: "${plantName}"`);
-      return res.status(404).send("Plant not found");
+    if (!token) {
+      console.error("Missing TREFLE_TOKEN in environment!");
+      return res.status(500).send("Trefle API key not configured on server.");
     }
 
+    try {
+      const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
+      const searchRes = await axios.get(searchUrl);
 
-    const plantSlug = searchRes.data.data[0].slug;
-    const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
-    const detailRes = await axios.get(detailUrl);
+      if (!searchRes.data.data || searchRes.data.data.length === 0) {
+        return res.status(404).send("Plant not found");
+      }
 
-    const plant = detailRes.data.data;
+      const plantSlug = searchRes.data.data[0].slug;
+      const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
+      const detailRes = await axios.get(detailUrl);
 
-    const plantInfo = {
-      common_name: plant.common_name,
-      scientific_name: plant.scientific_name,
-      family: plant.family_common_name,
-      sunlight: plant.main_species?.growth?.light || null,
-      watering: plant.main_species?.growth?.moisture_use || null,
-      duration: plant.main_species?.duration || null
-    };
+      const plant = detailRes.data.data;
+      const plantInfo = {
+        common_name: plant.common_name,
+        scientific_name: plant.scientific_name,
+        family: plant.family_common_name,
+        sunlight: plant.main_species?.growth?.light || null,
+        watering: plant.main_species?.growth?.moisture_use || null,
+        duration: plant.main_species?.duration || null
+      };
 
-    console.log("Plant info fetched:", plantInfo);
-
-    res.json(plantInfo);
-  } catch (err) {
-    console.error("Error fetching from Trefle:", err.response?.data || err.message);
-    res.status(500).send("Error fetching plant info from Trefle API");
-  }
-});
-
-
+      res.json(plantInfo);
+    } catch (err) {
+      console.error("Error fetching from Trefle:", err.response?.data || err.message);
+      res.status(500).send("Error fetching plant info from Trefle API");
+    }
+  });
 
   app.use(isAuthenticated);
 
@@ -193,7 +185,6 @@ app.set("views", path.join(__dirname, "../Frontend"));
     const username = req.session.user?.username;
     res.render("HTML/index", { username });
   });
-
 
   app.get("/favorites", async (req, res) => {
     try {
@@ -217,35 +208,27 @@ app.set("views", path.join(__dirname, "../Frontend"));
     }
   });
 
+  // AI Chatbot
+  app.post("/ask-ai", async (req, res) => {
+    const userQuestion = req.body.question;
 
-  const { Configuration, OpenAIApi } = require("openai");
+    try {
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "Helpful plant care assistant. Provide accurate and friendly plant advice." },
+          { role: "user", content: userQuestion }
+        ]
+      });
 
-const openai = new OpenAIApi(new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-}));
+      const answer = completion.choices[0].message.content;
+      res.json({ answer });
+    } catch (err) {
+      console.error("AI error:", err.message);
+      res.status(500).json({ error: "Something went wrong with the AI." });
+    }
+  });
 
-app.post("/ask-ai", express.json(), async (req, res) => {
-  const userQuestion = req.body.question;
-
-  try {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        { role: "system", content: "Helpful plant care assistant. Provide accurate and friendly plant advice." },
-        { role: "user", content: userQuestion }
-      ],
-    });
-
-    const answer = completion.data.choices[0].message.content;
-    res.json({ answer });
-
-  } catch (err) {
-    console.error("AI error:", err.message);
-    res.status(500).json({ error: "Something went wrong with the AI." });
-  }
-});
-
-  
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
     const username = req.session.user.username;
