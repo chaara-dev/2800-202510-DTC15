@@ -32,12 +32,14 @@
       <div class="content-box">
         <h1 class="large-heading">Welcome, <span class="highlight"><%= username %></span></h1>
         <p>Track and grow your plants below!</p>
-        <div class="buttons">
-          <a href="/myplants" class="btn">View My Plants</a>
-          <a href="/HTML/add_plant.html" class="btn">Add New Plant</a>
-        </div>
+
       </div>
     </div>
+    <ul class="plant-list">
+      <% userPlants.forEach(plant => { %>
+        <li><%= plant.name %> - <%= plant.scientific_name %></li>
+      <% }) %>
+    </ul>
 
       <button id="chat-toggle" onclick="toggleChat()">Need help?</button>
 

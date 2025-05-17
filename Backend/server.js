@@ -140,49 +140,69 @@ async function main() {
   });
 
   app.get('/api/plants/:name', async (req, res) => {
-    const plantName = req.params.name;
-    const token = process.env.TREFLE_TOKEN;
+  const plantName = req.params.name;
+  const apiKey = process.env.PLANT_ID_API_KEY;
 
-    if (!token) {
-      console.error("Missing TREFLE_TOKEN in environment!");
-      return res.status(500).send("Trefle API key not configured on server.");
-    }
-
-    try {
-      const searchUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`;
-      const searchRes = await axios.get(searchUrl);
-
-      if (!searchRes.data.data || searchRes.data.data.length === 0) {
-        return res.status(404).send("Plant not found");
+  try {
+    const response = await axios.post(
+      'https://plant.id/api/v3/identification',
+      {
+        images: [], 
+        organs: ["leaf"], 
+        similar_images: false,
+        latitude: 0,
+        longitude: 0,
+        language: "en",
+        details: ["common_names", "taxonomy", "growth", "watering", "sunlight", "duration"],
+        plant_language: "en",
+        plant_details: ["common_names", "watering", "sunlight", "duration", "url", "taxonomy"],
+        query: plantName
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Api-Key': apiKey
+        }
       }
+    );
 
-      const plantSlug = searchRes.data.data[0].slug;
-      const detailUrl = `https://trefle.io/api/v1/plants/${plantSlug}?token=${token}`;
-      const detailRes = await axios.get(detailUrl);
-
-      const plant = detailRes.data.data;
-      const plantInfo = {
-        common_name: plant.common_name,
-        scientific_name: plant.scientific_name,
-        family: plant.family_common_name,
-        sunlight: plant.main_species?.growth?.light || null,
-        watering: plant.main_species?.growth?.moisture_use || null,
-        duration: plant.main_species?.duration || null
-      };
-
-      res.json(plantInfo);
-    } catch (err) {
-      console.error("Error fetching from Trefle:", err.response?.data || err.message);
-      res.status(500).send("Error fetching plant info from Trefle API");
+    const suggestions = response.data?.suggestions;
+    if (!suggestions || suggestions.length === 0) {
+      return res.status(404).send("Plant not found");
     }
-  });
 
+    const topMatch = suggestions[0];
+    const plantData = {
+      common_name: topMatch.plant_name || plantName,
+      scientific_name: topMatch.plant_details?.taxonomy?.scientific_name || "",
+      sunlight: topMatch.plant_details?.sunlight || "Unknown",
+      watering: topMatch.plant_details?.watering || "Unknown",
+      duration: topMatch.plant_details?.duration || "Unknown"
+    };
+
+    res.json(plantData);
+
+  } catch (err) {
+    console.error("Error fetching from Plant.id:", err?.response?.data || err.message);
+    res.status(500).send("Error fetching plant info from Plant.id");
+  }
+  });
   app.use(isAuthenticated);
 
   app.get("/home", (req, res) => {
     const username = req.session.user?.username;
     res.render("HTML/index", { username });
   });
+
+
+  app.get("/myplants", isAuthenticated, async (req, res) => {
+  const username = req.session.user.username;
+
+  // Used to pull user plants from the db
+  const userPlants = await plantModel.find({ username });
+
+  res.render("HTML/my_plants", { username, userPlants });
+});
 
   app.get("/favorites", async (req, res) => {
     try {
@@ -205,7 +225,28 @@ async function main() {
       console.log("db error", err);
     }
   });
+  app.post("/addplant", isAuthenticated, async (req, res) => {
+  const { plant_name, scientific_name, sunlight, watering, duration } = req.body;
+  const username = req.session.user.username;
 
+  try {
+    await plantModel.create({
+      name: plant_name,
+      scientific_name,
+      sunlight,
+      watering,
+      duration,
+      username
+    });
+
+    await addToTimeline("Plant Added", `${plant_name} was added.`, new Date(), username);
+    res.redirect("/myplants");
+  } catch (err) {
+    console.error("Failed to add plant:", err);
+    res.status(500).send("Something went wrong while adding your plant.");
+  }
+});
+  
   // AI Chatbot
     app.post("/ask-ai", async (req, res) => {
     const userQuestion = req.body.question;
