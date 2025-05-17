@@ -141,52 +141,38 @@ async function main() {
 
   app.get('/api/plants/:name', async (req, res) => {
   const plantName = req.params.name;
-  const apiKey = process.env.PLANT_ID_API_KEY;
+  const apiKey = process.env.PERENUAL_API_KEY;
 
   try {
-    const response = await axios.post(
-      'https://plant.id/api/v3/identification',
-      {
-        images: [], 
-        organs: ["leaf"], 
-        similar_images: false,
-        latitude: 0,
-        longitude: 0,
-        language: "en",
-        details: ["common_names", "taxonomy", "growth", "watering", "sunlight", "duration"],
-        plant_language: "en",
-        plant_details: ["common_names", "watering", "sunlight", "duration", "url", "taxonomy"],
-        query: plantName
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Api-Key': apiKey
-        }
+    const response = await axios.get("https://perenual.com/api/species-list", {
+      params: {
+        key: apiKey,
+        q: plantName
       }
-    );
+    });
 
-    const suggestions = response.data?.suggestions;
-    if (!suggestions || suggestions.length === 0) {
+    const plant = response.data.data?.[0];
+
+    if (!plant) {
       return res.status(404).send("Plant not found");
     }
 
-    const topMatch = suggestions[0];
-    const plantData = {
-      common_name: topMatch.plant_name || plantName,
-      scientific_name: topMatch.plant_details?.taxonomy?.scientific_name || "",
-      sunlight: topMatch.plant_details?.sunlight || "Unknown",
-      watering: topMatch.plant_details?.watering || "Unknown",
-      duration: topMatch.plant_details?.duration || "Unknown"
+    const plantInfo = {
+      common_name: plant.common_name || plantName,
+      scientific_name: plant.scientific_name || '',
+      sunlight: Array.isArray(plant.sunlight) ? plant.sunlight.join(', ') : (plant.sunlight || 'Unknown'),
+      watering: plant.watering || 'Unknown',
+      duration: plant.cycle || 'Unknown'
     };
 
-    res.json(plantData);
+    res.json(plantInfo);
 
   } catch (err) {
-    console.error("Error fetching from Plant.id:", err?.response?.data || err.message);
-    res.status(500).send("Error fetching plant info from Plant.id");
+    console.error("Error fetching from Perenual:", err.response?.data || err.message);
+    res.status(500).send("Failed to fetch plant info from Perenual");
   }
-  });
+});
+
   app.use(isAuthenticated);
 
   app.get("/home", (req, res) => {
@@ -195,14 +181,13 @@ async function main() {
   });
 
 
-  app.get("/myplants", isAuthenticated, async (req, res) => {
+app.get("/myplants", isAuthenticated, async (req, res) => {
   const username = req.session.user.username;
-
-  // Used to pull user plants from the db
   const userPlants = await plantModel.find({ username });
 
   res.render("HTML/my_plants", { username, userPlants });
 });
+
 
   app.get("/favorites", async (req, res) => {
     try {
@@ -225,11 +210,25 @@ async function main() {
       console.log("db error", err);
     }
   });
+
+  app.get("/addplant", isAuthenticated, (req, res) => {
+  res.render("HTML/add_plant", { username: req.session.user.username, duplicate: false });
+});
+
+
   app.post("/addplant", isAuthenticated, async (req, res) => {
+  console.log("Received form data:", req.body);
   const { plant_name, scientific_name, sunlight, watering, duration } = req.body;
   const username = req.session.user.username;
 
   try {
+    const existingPlant = await plantModel.findOne({ name: plant_name, username });
+
+    if (existingPlant) {
+      return res.render("HTML/add_plant", { username, duplicate: true });
+
+    }
+
     await plantModel.create({
       name: plant_name,
       scientific_name,
@@ -246,6 +245,7 @@ async function main() {
     res.status(500).send("Something went wrong while adding your plant.");
   }
 });
+
   
   // AI Chatbot
     app.post("/ask-ai", async (req, res) => {
@@ -268,7 +268,7 @@ async function main() {
       res.json({ answer });
 
     } catch (err) {
-      console.error("🔥 GROQ AI Error:", err);
+      console.error("GROQ AI Error:", err);
       res.status(500).json({ answer: "Sorry, PlantPal AI is unavailable right now." });
     }
   });
@@ -288,6 +288,7 @@ async function main() {
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
+
 }
 
 async function addToTimeline(title, description, date, username) {
