@@ -41,15 +41,20 @@
 
       <button id="chat-toggle" onclick="toggleChat()">Need help?</button>
 
-    <div id="chat-popup" style="display: none;">
-      <div id="chat-header">
-        <span>PlantPal Assistant</span>
-        <button onclick="toggleChat()">✖</button>
-      </div>
-      <div id="chat-log" style="height: 150px; overflow-y: auto;"></div>
-      <input id="user-input" type="text" placeholder="Ask a plant question...">
-      <button onclick="sendMessage()">Send</button>
-    </div>
+<button id="chat-toggle" onclick="toggleChat()">Need help?</button>
+
+<div id="chat-popup" style="display: none;">
+  <div id="chat-header">
+    <span>PlantPal Assistant</span>
+    <button onclick="toggleChat()">✖</button>
+  </div>
+
+  <div id="chat-box" style="height: 150px; overflow-y: auto;"></div>
+
+  <input id="chat-input" type="text" placeholder="Ask a plant question...">
+  <button id="chat-send">Send</button>
+</div>
+
 
    
     <footer class="footer">

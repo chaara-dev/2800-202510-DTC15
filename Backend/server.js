@@ -140,8 +140,8 @@ async function main() {
   });
 
   app.get('/api/plants/:name', async (req, res) => {
-  const plantName = req.params.name;
-  const apiKey = process.env.PERENUAL_API_KEY;
+    const plantName = req.params.name;
+    const apiKey = process.env.PERENUAL_API_KEY;
 
   try {
     const response = await axios.get("https://perenual.com/api/species-list", {
@@ -181,12 +181,12 @@ async function main() {
   });
 
 
-app.get("/myplants", isAuthenticated, async (req, res) => {
-  const username = req.session.user.username;
-  const userPlants = await plantModel.find({ username });
+  app.get("/myplants", isAuthenticated, async (req, res) => {
+    const username = req.session.user.username;
+    const userPlants = await plantModel.find({ username });
 
-  res.render("HTML/my_plants", { username, userPlants });
-});
+    res.render("HTML/my_plants", { username, userPlants });
+  });
 
 
   app.get("/favorites", async (req, res) => {
@@ -211,12 +211,12 @@ app.get("/myplants", isAuthenticated, async (req, res) => {
     }
   });
 
-app.get("/addplant", isAuthenticated, (req, res) => {
-  res.render("HTML/add_plant", {
-    username: req.session.user.username,
-    duplicate: false, 
+  app.get("/addplant", isAuthenticated, (req, res) => {
+    res.render("HTML/add_plant", {
+      username: req.session.user.username,
+      duplicate: false, 
+    });
   });
-});
 
 
 
