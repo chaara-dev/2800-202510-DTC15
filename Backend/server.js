@@ -51,15 +51,6 @@ const reminderSchema = new mongoose.Schema({
 const reminderModel = mongoose.model("reminders", reminderSchema);
 
 
-const reminderSchema = new mongoose.Schema({
-  username: String,
-  plantName: String,
-  action: String,
-  timeOfDay: String,
-});
-const reminderModel = mongoose.model("reminders", reminderSchema);
-
-
 // Main Logic
 main().catch((err) => console.log(err));
 
@@ -70,7 +61,7 @@ async function main() {
   const port = process.env.PORT || 3000;
 
   app.set("view engine", "ejs");
-    app.set("views", path.join(__dirname, "../Frontend"));
+  app.set("views", path.join(__dirname, "../Frontend"));
   app.use(express.static(path.join(__dirname, "../Frontend")));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
@@ -81,7 +72,7 @@ async function main() {
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: {
-      secure: false 
+      secure: false
     }
   }));
 
@@ -98,7 +89,7 @@ async function main() {
       ? next()
       : res.redirect("/HTML/login.html");
 
-  
+
   app.get("/", (_req, res) => res.redirect("/home"));
 
   app.get("/location", (_req, res) => {
@@ -161,35 +152,35 @@ async function main() {
     const plantName = req.params.name;
     const apiKey = process.env.PERENUAL_API_KEY;
 
-  try {
-    const response = await axios.get("https://perenual.com/api/species-list", {
-      params: {
-        key: apiKey,
-        q: plantName
+    try {
+      const response = await axios.get("https://perenual.com/api/species-list", {
+        params: {
+          key: apiKey,
+          q: plantName
+        }
+      });
+
+      const plant = response.data.data?.[0];
+
+      if (!plant) {
+        return res.status(404).send("Plant not found");
       }
-    });
 
-    const plant = response.data.data?.[0];
+      const plantInfo = {
+        common_name: plant.common_name || plantName,
+        scientific_name: plant.scientific_name || '',
+        sunlight: Array.isArray(plant.sunlight) ? plant.sunlight.join(', ') : (plant.sunlight || 'Unknown'),
+        watering: plant.watering || 'Unknown',
+        duration: plant.cycle || 'Unknown'
+      };
 
-    if (!plant) {
-      return res.status(404).send("Plant not found");
+      res.json(plantInfo);
+
+    } catch (err) {
+      console.error("Error fetching from Perenual:", err.response?.data || err.message);
+      res.status(500).send("Failed to fetch plant info from Perenual");
     }
-
-    const plantInfo = {
-      common_name: plant.common_name || plantName,
-      scientific_name: plant.scientific_name || '',
-      sunlight: Array.isArray(plant.sunlight) ? plant.sunlight.join(', ') : (plant.sunlight || 'Unknown'),
-      watering: plant.watering || 'Unknown',
-      duration: plant.cycle || 'Unknown'
-    };
-
-    res.json(plantInfo);
-
-  } catch (err) {
-    console.error("Error fetching from Perenual:", err.response?.data || err.message);
-    res.status(500).send("Failed to fetch plant info from Perenual");
-  }
-});
+  });
 
   app.use(isAuthenticated);
 
@@ -232,50 +223,50 @@ async function main() {
   app.get("/addplant", isAuthenticated, (req, res) => {
     res.render("HTML/add_plant", {
       username: req.session.user.username,
-      duplicate: false, 
+      duplicate: false,
     });
   });
 
 
 
   app.post("/addplant", isAuthenticated, async (req, res) => {
-  console.log("Received form data:", req.body);
-  const { plant_name, scientific_name, sunlight, watering, duration } = req.body;
-  const username = req.session.user.username;
+    console.log("Received form data:", req.body);
+    const { plant_name, scientific_name, sunlight, watering, duration } = req.body;
+    const username = req.session.user.username;
 
-  try {
-    const existingPlant = await plantModel.findOne({ name: plant_name, username });
+    try {
+      const existingPlant = await plantModel.findOne({ name: plant_name, username });
 
-    if (existingPlant) {
-      return res.render("HTML/add_plant", { username, duplicate: true });
+      if (existingPlant) {
+        return res.render("HTML/add_plant", { username, duplicate: true });
 
+      }
+
+      await plantModel.create({
+        name: plant_name,
+        scientific_name,
+        sunlight,
+        watering,
+        duration,
+        username
+      });
+
+      await addToTimeline("Plant Added", `${plant_name} was added.`, new Date(), username);
+      res.redirect("/myplants");
+    } catch (err) {
+      console.error("Failed to add plant:", err);
+      res.status(500).send("Something went wrong while adding your plant.");
     }
+  });
 
-    await plantModel.create({
-      name: plant_name,
-      scientific_name,
-      sunlight,
-      watering,
-      duration,
-      username
-    });
 
-    await addToTimeline("Plant Added", `${plant_name} was added.`, new Date(), username);
-    res.redirect("/myplants");
-  } catch (err) {
-    console.error("Failed to add plant:", err);
-    res.status(500).send("Something went wrong while adding your plant.");
-  }
-});
-
-  
   // AI Chatbot
-    app.post("/ask-ai", async (req, res) => {
+  app.post("/ask-ai", async (req, res) => {
     const userQuestion = req.body.question;
 
     try {
       const completion = await groq.chat.completions.create({
-        model: "llama3-8b-8192", 
+        model: "llama3-8b-8192",
         messages: [
           {
             role: "system",
