@@ -42,6 +42,24 @@ const userSchema = new mongoose.Schema({
 });
 const userModel = mongoose.model("users", userSchema);
 
+const reminderSchema = new mongoose.Schema({
+  username: String,
+  plantName: String,
+  action: String,
+  timeOfDay: String,
+});
+const reminderModel = mongoose.model("reminders", reminderSchema);
+
+
+const reminderSchema = new mongoose.Schema({
+  username: String,
+  plantName: String,
+  action: String,
+  timeOfDay: String,
+});
+const reminderModel = mongoose.model("reminders", reminderSchema);
+
+
 // Main Logic
 main().catch((err) => console.log(err));
 
@@ -52,7 +70,7 @@ async function main() {
   const port = process.env.PORT || 3000;
 
   app.set("view engine", "ejs");
-  app.set("views", path.join(__dirname, "../Frontend"));
+    app.set("views", path.join(__dirname, "../Frontend"));
   app.use(express.static(path.join(__dirname, "../Frontend")));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
@@ -277,6 +295,45 @@ async function main() {
     }
   });
 
+
+  app.get("/reminders", async (req, res) => {
+    try {
+      const reminders = await reminderModel.find({ username: req.session.user.username });
+      res.json(reminders);
+    } catch (err) {
+      console.log("db error", err);
+    }
+  });
+
+  app.post("/reminders", async (req, res) => {
+    const { plantName, action, timeOfDay } = req.body;
+
+    const reminder = new reminderModel({
+      username: req.session.user.username,
+      plantName,
+      action,
+      timeOfDay
+    });
+
+    await reminder.save();
+    res.status(200).json(reminder);
+  });
+
+  app.delete("/reminders/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const username = req.session.user.username;
+
+      const deleted = await reminderModel.findOneAndDelete({ _id: id, username });
+
+      if (!deleted) return res.status(404).json({ message: "Reminder not found" });
+
+      res.json({ message: "Reminder deleted" });
+    } catch (err) {
+      console.error("Delete failed:", err);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
 
   app.get("/addFavorite/:favorite", async (req, res) => {
     const favorite = req.params.favorite;
