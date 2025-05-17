@@ -211,9 +211,13 @@ app.get("/myplants", isAuthenticated, async (req, res) => {
     }
   });
 
-  app.get("/addplant", isAuthenticated, (req, res) => {
-  res.render("HTML/add_plant", { username: req.session.user.username, duplicate: false });
+app.get("/addplant", isAuthenticated, (req, res) => {
+  res.render("HTML/add_plant", {
+    username: req.session.user.username,
+    duplicate: false, 
+  });
 });
+
 
 
   app.post("/addplant", isAuthenticated, async (req, res) => {
