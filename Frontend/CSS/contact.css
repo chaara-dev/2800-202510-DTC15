@@ -1,0 +1,53 @@
+.contact-icon-wrapper {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-icon-wrapper:hover {
+    transform: scale(1.1);
+    background-color: #22c55e;
+}
+
+input,
+textarea {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: black;
+}
+
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+button[type="submit"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-section {
+        padding: 1.5rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-icon {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+}
+
+.business-hours i {
+    transition: color 0.3s ease;
+}
+
+.business-hours:hover i {
+    color: #86efac;
+}

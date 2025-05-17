@@ -4,6 +4,7 @@
   "description": "DTC-15\r Team Members: \r - Gurman \r - Koko\r - Chara\r - Petar\r - Niga\r ## More details to come\r TBA",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,9 +20,15 @@
   },
   "homepage": "https://github.com/chaara-dev/2800-202510-DTC15#readme",
   "dependencies": {
+    "axios": "^1.9.0",
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "mongoose": "^8.14.1"
+    "groq-sdk": "^0.21.0",
+    "mongoose": "^8.14.1",
+    "openai": "^4.98.0"
   }
 }

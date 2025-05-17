@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantPal</title>
+  
+  <link rel="stylesheet" href="/CSS/style_footer.css">
+  <link rel="stylesheet" href="/CSS/style_index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="background">
+    
+    <nav class="navbar">
+      <div class="nav-title">PlantPal</div>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+   
+    <div class="main-content">
+      <div class="content-box">
+        <h1 class="large-heading">Welcome, <span class="highlight"><%= username %></span></h1>
+        <p>Track and grow your plants below!</p>
+        <div class="buttons">
+          <a href="/myplants" class="btn">View My Plants</a>
+          <a href="/addplant" class="btn">Add New Plant</a>
+        </div>
+      </div>
+    </div>
+
+      <button id="chat-toggle" onclick="toggleChat()">Need help?</button>
+
+<button id="chat-toggle" onclick="toggleChat()">Need help?</button>
+
+<div id="chat-popup" style="display: none;">
+  <div id="chat-header">
+    <span>PlantPal Assistant</span>
+    <button onclick="toggleChat()">✖</button>
+  </div>
+
+  <div id="chat-box" style="height: 150px; overflow-y: auto;"></div>
+
+  <input id="chat-input" type="text" placeholder="Ask a plant question...">
+  <button id="chat-send">Send</button>
+</div>
+
+
+   
+    <footer class="footer">
+      <div class="footer-brand">
+       
+        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" fill="#000000">
+          <path style="fill:#6DC180;" d="M384.048,330.928c2.068-17.365,11.206-32.956,24.689-44.094..."></path>
+          <path style="fill:#5CA15D;" d="M493.505,22.3l-417.82,417.82c71.414,69.399,185.562,68.78..."></path>
+          <polygon style="fill:#4E894D;" points="313.458,235.454 276.586,198.582 185.894,289.274..."></polygon>
+        </svg>
+        <p class="footer-title">PlantPal</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+        <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+        <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon"></a>
+      </div>
+      <p class="footer-copy">&copy; 2025 PlantPal. All rights reserved.</p>
+    </footer>
+  </div>
+
+
+  <script src="/scripts/chatbot.js"></script>
+  <script src="/scripts/script.js"></script>
+
+</body>
+</html>
