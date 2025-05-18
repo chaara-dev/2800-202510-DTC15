@@ -1,0 +1,53 @@
+.date-number {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.watering-event {
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.current-day {
+    position: relative;
+}
+
+.current-day .date-number {
+    background-color: #4caf50;
+    color: white;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.bg-white:hover {
+    background-color: #f1f8e9 !important;
+}
+
+@media (max-width: 640px) {
+    .watering-event span {
+        display: none;
+    }
+
+    .watering-event {
+        justify-content: center;
+        padding: 0.25rem;
+    }
+
+    .date-number {
+        font-size: 0.8rem;
+    }
+
+    .grid.grid-cols-7>div {
+        height: 3.5rem !important;
+    }
+}
