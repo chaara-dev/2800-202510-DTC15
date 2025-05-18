@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantPal - Watering Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moss: {
+                            100: '#e8f5e9',
+                            200: '#c8e6c9',
+                            300: '#a5d6a7',
+                            400: '#81c784',
+                            500: '#66bb6a',
+                            600: '#4caf50',
+                            700: '#43a047',
+                            800: '#388e3c',
+                            900: '#2e7d32',
+                        },
+                        sage: {
+                            100: '#f1f8e9',
+                            200: '#dcedc8',
+                            300: '#c5e1a5',
+                            400: '#aed581',
+                            500: '#9ccc65',
+                        },
+                        earth: {
+                            400: '#8d6e63',
+                            500: '#795548',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="../CSS/calendar.css" rel="stylesheet">
+</head>
+
+<body class="bg-moss-100">
+    <nav class="bg-moss-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold flex items-center">
+                <i class="fas fa-leaf mr-2"></i>
+                PlantPal
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-moss-300">Home</a>
+                <a href="about.html" class="hover:text-moss-300">About</a>
+                <a href="calendar.html" class="font-semibold border-b-2 border-white">Calendar</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-moss-900 mb-2">
+                <i class="fas fa-calendar-days mr-2"></i>Watering Calendar
+            </h1>
+            <p class="text-moss-700">Track your plant care schedule</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-moss-200">
+            <div class="bg-moss-600 text-white p-4 flex justify-between items-center">
+                <button class="p-2 rounded-full hover:bg-moss-700 transition">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h2 class="text-xl font-semibold">May 2025</h2>
+                <button class="p-2 rounded-full hover:bg-moss-700 transition">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-7 bg-moss-500 text-white text-sm font-medium">
+                <div class="p-2 text-center">Sun</div>
+                <div class="p-2 text-center">Mon</div>
+                <div class="p-2 text-center">Tue</div>
+                <div class="p-2 text-center">Wed</div>
+                <div class="p-2 text-center">Thu</div>
+                <div class="p-2 text-center">Fri</div>
+                <div class="p-2 text-center">Sat</div>
+            </div>
+            <div class="grid grid-cols-7 gap-px bg-moss-200">
+                <div class="bg-moss-50 h-24 p-1"></div>
+                <div class="bg-moss-50 h-24 p-1"></div>
+                <div class="bg-white h-24 p-1 relative">
+                    <div class="date-number">1</div>
+                    <div class="watering-event bg-moss-100 border-l-4 border-moss-500">
+                        <i class="fas fa-tint text-moss-600 mr-1"></i>
+                        <span class="text-xs">Monstera</span>
+                    </div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">2</div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">3</div>
+                    <div class="watering-event bg-sage-100 border-l-4 border-sage-500">
+                        <i class="fas fa-tint text-sage-600 mr-1"></i>
+                        <span class="text-xs">Fern</span>
+                    </div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">4</div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">5</div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">6</div>
+                </div>
+                <div class="bg-white h-24 p-1">
+                    <div class="date-number">7</div>
+                    <div class="watering-event bg-moss-100 border-l-4 border-moss-500">
+                        <i class="fas fa-tint text-moss-600 mr-1"></i>
+                        <span class="text-xs">Pothos</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white rounded-xl p-6 shadow-sm border border-moss-200 max-w-md mx-auto">
+            <h3 class="text-lg font-semibold text-moss-800 mb-3 flex items-center">
+                <i class="fas fa-key mr-2"></i>Calendar Key
+            </h3>
+            <div class="space-y-2">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-moss-400 rounded mr-2"></div>
+                    <span class="text-sm text-moss-800">Watered today</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-sage-400 rounded mr-2"></div>
+                    <span class="text-sm text-moss-800">Watered this week</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-amber-200 rounded mr-2"></div>
+                    <span class="text-sm text-moss-800">Needs water</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-moss-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 PlantPal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
