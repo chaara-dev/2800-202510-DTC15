@@ -1,5 +1,10 @@
+html,
 body {
-    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Tagesschrift", system-ui;
     margin: 0;
     padding: 0;
     background-color: #f0fdf4;
@@ -7,7 +12,7 @@ body {
 }
 
 .navbar {
-    background-color: #065f46;
+    background-color: #065f46d5;
     color: white;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -19,9 +24,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    /* Add this */
+    padding: 0 1rem;
+    /* Add some padding to prevent tight edges */
+    box-sizing: border-box;
 }
 
 .nav-brand {
+    font-family: "Delius Swash Caps", cursive;
     font-size: 1.5rem;
     font-weight: bold;
     display: flex;
@@ -42,6 +53,7 @@ body {
 
 .nav-links a:hover {
     opacity: 0.8;
+    color: #62c6aa;
 }
 
 .nav-links a.active {
@@ -53,6 +65,9 @@ body {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
+    width: 100%;
+    /* Add this */
+    box-sizing: border-box;
 }
 
 .about-section {
@@ -160,11 +175,20 @@ body {
 }
 
 .site-footer {
-    background-color: #065f46;
+    background-color: #065f46d5;
     color: white;
     padding: 1.5rem;
     text-align: center;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
 }
+
 
 .footer-content {
     max-width: 1200px;
@@ -184,4 +208,59 @@ body {
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+
+.backimage {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Background image settings */
+    background-image: url('../Resources/Images/acb.avif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+
+}
+
+.backimage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    /* Slight dark overlay for readability */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure content stays above overlay */
+.backimage>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive behavior for mobile screens */
+@media (max-width: 768px) {
+    .backimage {
+        background-attachment: scroll;
+        /* Prevents "jumping" on mobile */
+    }
+
+
+}
+
+
+* {
+    box-sizing: border-box;
+    max-width: 100%;
 }
