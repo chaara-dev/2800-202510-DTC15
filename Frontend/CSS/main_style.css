@@ -9,10 +9,12 @@ html, body {
 /* Main content area should grow to take up remaining space */
 body > main {
     flex: 1;
+    padding-top: 80px;
+    z-index: 0;
 }
 
 .content-wrapper {
-    flex: 1;
+    flex: 0;
   }
 
   
@@ -45,4 +47,46 @@ body > main {
         text-align: center;
     }
 
+}
+
+ .backimage {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Background image settings */
+    background-image: url('../Resources/Images/acb.avif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    /* Ensure it clips child overflow */
+    overflow: hidden;
+}
+
+.backimage::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.1); /* Slight dark overlay for readability */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure content stays above overlay */
+.backimage > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive behavior for mobile screens */
+@media (max-width: 768px) {
+    .backimage {
+        background-attachment: scroll; /* Prevents "jumping" on mobile */
+    }
+
+    
 }
