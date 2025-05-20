@@ -137,6 +137,7 @@ body{
 .footer {
     max-width: 100%;
     overflow: hidden;
+    background-color: #0C4A2Cd4 !important;
 }
 
 .footer-icon {
