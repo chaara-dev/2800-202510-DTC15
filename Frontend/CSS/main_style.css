@@ -34,12 +34,12 @@
 }
 
 .logout-button a:hover {
-    background-color: #b71c1c;
+    background-color: #b71c1c !important;
 }
 
 @media (max-width: 768px) {
     .logout-button a {
-        color: white !important;
+        color: white;
         background-color: rgba(19, 93, 19, 0.7) !important;
         text-decoration: none !important;
         margin: 0 !important;
@@ -53,9 +53,15 @@
     }
 
     
-    .nav-links .logout-button a:hover {
+    /* .nav-links .logout-button a:hover {
         background-color: #b71c1c !important;
+    } */
+
+    .logout-button a:hover {
+        background-color: #b71c1c !important;
+        color: #C1E1B4 !important;
     }
+    
     
 
 }
