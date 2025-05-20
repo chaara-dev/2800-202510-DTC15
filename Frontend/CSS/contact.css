@@ -7,6 +7,60 @@
     background-color: #22c55e;
 }
 
+.container {
+    font-family: "Tagesschrift", system-ui;
+}
+
+
+.site-footer {
+    background-color: #065f46d5;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.nav-brand {
+    font-family: "Delius Swash Caps", cursive;
+    font-size: 2.0rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar {
+    background-color: #065f46d5;
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+    color: #62c6aa;
+}
+
 input,
 textarea {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -50,4 +104,58 @@ button[type="submit"] {
 
 .business-hours:hover i {
     color: #86efac;
+}
+
+.backimage {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Background image settings */
+    background-image: url('../Resources/Images/acb.avif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+
+}
+
+.backimage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.15);
+    /* Slight dark overlay for readability */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure content stays above overlay */
+.backimage>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive behavior for mobile screens */
+@media (max-width: 768px) {
+    .backimage {
+        background-attachment: scroll;
+        /* Prevents "jumping" on mobile */
+    }
+
+
+}
+
+
+* {
+    box-sizing: border-box;
+    max-width: 100%;
 }
