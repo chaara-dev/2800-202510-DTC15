@@ -189,7 +189,14 @@ async function main() {
     res.render("HTML/index", { username });
   });
 
+  app.get("/about", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/about.html"));
+  });
 
+  app.get("/contact", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/contact.html"));
+  });
+    
   app.get("/myplants", isAuthenticated, async (req, res) => {
     const username = req.session.user.username;
     const userPlants = await plantModel.find({ username });
