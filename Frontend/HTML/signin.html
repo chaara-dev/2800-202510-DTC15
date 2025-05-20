@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlantPal Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../CSS/style_index.css" />
   <link rel="stylesheet" href="../CSS/style_signup.css" />
   <link rel="stylesheet" href="../CSS/style_footer.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+    rel="stylesheet">
 </head>
-<body>
+
+<body class="flex flex-col min-h-screen">
   <div class="background">
-    <nav class="navbar">
-      <div class="nav-title">PlantPal</div>
-      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-      <div class="nav-links" id="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </div>
+    <nav
+      class="navbar bg-[#0C4A2Cd4] flex flex-col md:flex-row md:items-center md:justify-between p-4  text-white top-0 z-50">
+      <!-- Brand + Hamburger -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <div class="text-2xl font-bold flex items-center">
+          <i class="fas fa-leaf mr-2 text-white"></i>
+          <span class="nav-brand">PlantPal</span>
+        </div>
     </nav>
 
+
     <div class="main-content">
-      <div class="content-box signup-container">
+      <div class="content-box signup-container font-extrabold">
         <h2>Welcome Back to PlantPal</h2>
         <form action="/HTML/login" method="POST" class="signup-form">
           <div class="form-group">
@@ -31,32 +38,33 @@
           <div class="form-group">
             <input type="password" name="password" placeholder="Password" required />
           </div>
-          <div class="remember-line">
+          <div class="remember-line text-lg font-bold text-center">
             <label for="remember">Remember Me</label>
             <input type="checkbox" name="remember" id="remember" />
           </div>
-          
-          <div class="form-group">
+
+          <div class="form-group text-black font-bold text-center">
             <button type="submit">Sign In</button>
           </div>
         </form>
-        <a href="signup.html" class="back-link">Create an Account</a>
+        <a href="signup.html" class="back-link text-lg font-bold text-center">Create an Account</a>
       </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer bg-[#0C4A2Cd4]">
       <div class="footer-brand">
-        <p class="footer-title">PlantPal</p>
+        <i class="fas fa-leaf mr-2 text-white text-2xl md:text-3xl"></i>
+        <p class="footer-title text-center">PlantPal</p>
       </div>
       <div class="footer-links">
-        <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon" /></a>
-        <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon" /></a>
-        <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon" /></a>
+        <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+        <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+        <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon"></a>
       </div>
-      <p class="footer-copy">&copy; 2025 PlantPal. All rights reserved.</p>
+      <p class="footer-copy mt-3">&copy; 2025 PlantPal. All rights reserved.</p>
     </footer>
   </div>
 
-  <script src="../../scripts/script.js"></script>
 </body>
+
 </html>
