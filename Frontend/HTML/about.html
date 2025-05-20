@@ -5,36 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About PlantPal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link
-    href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
-    rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/about.css">
-    
+        href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+        rel="stylesheet">
+
+    <link href="../CSS/about.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style_footer.css">
+    <link rel="stylesheet" href="../CSS/main_style.css">
+
+
 </head>
 
-<body class="backimage">
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-leaf"></i>
-                PlantPal
+<body class="backimage flex flex-col min-h-screen">
+    <nav
+        class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-white top-0 z-50">
+        <!-- Brand + Hamburger -->
+        <div class="flex items-center justify-between w-full md:w-auto">
+            <div class="text-2xl font-bold flex items-center">
+                <i class="fas fa-leaf mr-2 text-white"></i>
+                <span class="nav-brand">PlantPal</span>
             </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="contact.html">Contact</a>
+            <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="reminders.html">Reminders</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="location.html">Location</a>
+            <a href="settings.html">Settings</a>
+            <div class="logout-button">
+                <a href="logout.html">Logout</a>
             </div>
         </div>
     </nav>
 
     <main class="container">
         <section class="about-section">
-            <h1 class="about-title">
+            <h1 class="about-title font-extrabold">
                 <i class="fas fa-seedling"></i>About PlantPal
             </h1>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text font-bold text-base sm:text-lg">
                     <p>PlantPal helps you never forget to water your plants again with smart reminders and care tips.
                     </p>
                     <ul class="features-list">
@@ -51,23 +66,24 @@
         </section>
 
         <section class="team-section">
-            <h2 class="section-title">Our Team</h2>
-            <p class="team-intro">We're a group of BCIT CST students passionate about building practical solutions through code.</p>
+            <h2 class="section-title font-extrabold">Our Team</h2>
+            <p class="team-intro text-center font-bold text-base sm:text-lg">We're a group of BCIT CST students passionate about building practical solutions
+                through code.</p>
             <div class="team-grid">
                 <div class="team-card">
                     <div class="member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h3>Nio</h3>
-                    <p>CST Term 1 student</p>
+                    <h3 class="font-bold text-base sm:text-lg">Nio</h3>
+                    <p class="font-bold text-md">CST Term 1 student</p>
                 </div>
 
                 <div class="team-card">
                     <div class="member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h3>Chaara</h3>
-                    <p>CST Term 2 student</p>
+                    <h3 class="font-extrabold">Chaara</h3>
+                    <p class="font-bold text-md">CST Term 2 student</p>
                 </div>
 
                 <div class="team-card">
@@ -75,7 +91,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <h3>Koko</h3>
-                    <p>CST Term 1 student</p>
+                    <p class="font-bold text-md">CST Term 1 student</p>
                 </div>
 
                 <div class="team-card">
@@ -83,7 +99,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <h3>Petar</h3>
-                    <p>CST Term 1 student</p>
+                    <p class="font-bold text-md">CST Term 1 student</p>
                 </div>
 
                 <div class="team-card">
@@ -91,17 +107,38 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <h3>Gurman</h3>
-                    <p>CST Term 2 student</p>
+                    <p class="font-bold text-md">CST Term 2 student</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; 2025 PlantPal. All rights reserved.</p>
+    <footer class="footer bg-[#0C4A2Cd4]">
+        <div class="footer-brand">
+            <i class="fas fa-leaf mr-2 text-white text-2xl md:text-3xl"></i>
+            <p class="footer-title text-center">PlantPal</p>
         </div>
+        <div class="footer-links">
+            <a href="index.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+            <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+            <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon"></a>
+        </div>
+        <p class="footer-copy mt-3">&copy; 2025 PlantPal. All rights reserved.</p>
     </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.getElementById("menu-toggle");
+            const nav = document.getElementById("nav-links");
+
+            toggle.addEventListener("click", () => {
+                nav.classList.toggle("active");
+            });
+        });
+
+    </script>
 </body>
 
 </html>
