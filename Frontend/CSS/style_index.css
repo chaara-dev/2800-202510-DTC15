@@ -22,7 +22,7 @@ html {
     position: relative;
     min-height: 100vh;
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .navbar {
@@ -47,7 +47,7 @@ html {
     cursor: pointer;
     color: white;
     margin-left: auto;
-    
+
 }
 
 .nav-title {
@@ -94,7 +94,7 @@ html {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     max-width: 400px;
     width: 90%;
-    max-height: 90vh; 
+    max-height: 90vh;
     overflow-y: auto;
 }
 
@@ -109,23 +109,23 @@ h1 {
 }
 
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .buttons .btn {
-  padding: 0.7rem 1.5rem;
-  background-color: #a6e3a1;
-  color: #003300;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-  min-width: 180px;
-  text-align: center;
+    padding: 0.7rem 1.5rem;
+    background-color: #a6e3a1;
+    color: #003300;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    min-width: 180px;
+    text-align: center;
 }
 
 
@@ -150,21 +150,21 @@ h1 {
 .footer-icon:hover {
     transform: scale(1.2);
     filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
-  } 
-  
-  #chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  background-color: #537251;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  cursor: pointer;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
-  font-weight: bold;
+}
+
+#chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #537251;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 #chat-popup {
@@ -185,47 +185,47 @@ h1 {
 }
 
 #chat-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 #chat-log {
-  height: 150px;
-  overflow-y: auto;
-  border: 1px solid #000000;
-  color: #280003;
-  background: rgb(209, 209, 209);
-  padding: 5px;
-  margin-bottom: 8px;
-  border-radius: 5px;
-  font-size: 14px;
+    height: 150px;
+    overflow-y: auto;
+    border: 1px solid #000000;
+    color: #280003;
+    background: rgb(209, 209, 209);
+    padding: 5px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 #chat-popup input[type="text"] {
-  width: 70%;
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+    width: 70%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 #chat-popup button {
-  padding: 5px 10px;
-  background-color: #c2847a;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    padding: 5px 10px;
+    background-color: #c2847a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-  
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;
         align-items: center;
         position: relative;
-       
+
     }
 
     .menu-toggle {
@@ -247,7 +247,7 @@ h1 {
 
     .nav-links.active {
         max-height: 500px;
-        
+
     }
 
     .nav-links a {
@@ -270,16 +270,16 @@ h1 {
         font-weight: bolder;
     }
 
-    
+
 
     .footer-icon {
         width: 30px;
         height: 30px;
         margin: 0 5px;
     }
-    
+
     #chat-popup {
-        width: 90%;  
+        width: 90%;
         right: 5%;
         bottom: 100px;
     }
@@ -292,7 +292,8 @@ h1 {
         padding: 8px 14px;
         font-size: 0.9rem;
     }
- 
+
 
 
 }
+
