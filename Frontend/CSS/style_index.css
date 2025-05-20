@@ -88,7 +88,7 @@ html {
 }
 
 .content-box {
-    background-color: rgba(0, 51, 0, 0.6);
+    background-color:#0c4a2cb4;
     padding: 3rem 2rem;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -117,15 +117,15 @@ h1 {
 }
 
 .buttons .btn {
-    padding: 0.7rem 1.5rem;
-    background-color: #a6e3a1;
-    color: #003300;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease;
-    min-width: 180px;
-    text-align: center;
+    padding: 0.7rem 1.5rem !important;
+    background-color: #a6e3a1 !important;
+    color: #003300 !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: background 0.3s ease !important;
+    min-width: 180px !important;
+    text-align: center !important;
 }
 
 
@@ -297,3 +297,7 @@ h1 {
 
 }
 
+.nav-brand {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight:bolder;
+}
