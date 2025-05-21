@@ -17,8 +17,10 @@ const plantSchema = new mongoose.Schema({
   sunlight: String,
   watering: String,
   duration: String,
+  image: String,  
   username: String,
 });
+
 const plantModel = mongoose.model("plants", plantSchema);
 
 const favoritesSchema = new mongoose.Schema({
@@ -166,13 +168,15 @@ async function main() {
         return res.status(404).send("Plant not found");
       }
 
-      const plantInfo = {
-        common_name: plant.common_name || plantName,
-        scientific_name: plant.scientific_name || '',
-        sunlight: Array.isArray(plant.sunlight) ? plant.sunlight.join(', ') : (plant.sunlight || 'Unknown'),
-        watering: plant.watering || 'Unknown',
-        duration: plant.cycle || 'Unknown'
-      };
+    const plantInfo = {
+      common_name: plant.common_name || plantName,
+      scientific_name: plant.scientific_name || '',
+      sunlight: Array.isArray(plant.sunlight) ? plant.sunlight.join(', ') : (plant.sunlight || 'Unknown'),
+      watering: plant.watering || 'Unknown',
+      duration: plant.cycle || 'Unknown',
+      image: plant.default_image?.medium_url || ''  
+    };
+
 
       res.json(plantInfo);
 
@@ -265,7 +269,7 @@ async function main() {
 
   app.post("/addplant", isAuthenticated, async (req, res) => {
     console.log("Received form data:", req.body);
-    const { plant_name, scientific_name, sunlight, watering, duration } = req.body;
+    const { plant_name, scientific_name, sunlight, watering, duration, image } = req.body;
     const username = req.session.user.username;
 
     try {
@@ -276,14 +280,16 @@ async function main() {
 
       }
 
-      await plantModel.create({
-        name: plant_name,
-        scientific_name,
-        sunlight,
-        watering,
-        duration,
-        username
-      });
+    await plantModel.create({
+      name: plant_name,
+      scientific_name,
+      sunlight,
+      watering,
+      duration,
+      image,  
+      username
+    });
+
 
       await addToTimeline("Plant Added", `${plant_name} was added.`, new Date(), username);
       res.redirect("/myplants");
