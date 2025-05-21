@@ -193,7 +193,7 @@ async function main() {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/about.html"));
   });
 
-  app.get("/reminders", (_req, res) => {
+  app.get("/reminders-page", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/reminders.html"));
   });
 
