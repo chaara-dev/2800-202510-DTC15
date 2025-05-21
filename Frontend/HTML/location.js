@@ -12,15 +12,22 @@ function getLocationAndWeather() {
   function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    document.getElementById("location").innerText = `Latitude: ${lat.toFixed(2)}, Longitude: ${lon.toFixed(2)}`;
+    document.getElementById("location").innerText = `Latitude: ${lat.toFixed(2)},  Longitude: ${lon.toFixed(2)}`;
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
       .then(response => response.json())
       .then(data => {
         const temp = data.main.temp;
         const weather = data.weather[0].description;
+        const iconCode = data.weather[0].icon;
         const city = data.name;
-        document.getElementById("weather").innerText = `📍 ${city}: ${temp}°C, ${weather}`;
+
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+        document.getElementById("weather").innerHTML = `
+          📍 ${city}: ${temp}°C, ${weather}
+          <img id="weather-icon" src="${iconUrl}" alt="${weather}" class="inline-icon">
+        `;
       })
       .catch(() => {
         document.getElementById("weather").innerText = "Could not fetch weather data.";
