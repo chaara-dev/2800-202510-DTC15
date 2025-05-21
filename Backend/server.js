@@ -194,8 +194,9 @@ async function main() {
   });
 
   app.get("/about", (_req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend/HTML/about.html"));
+    res.render("HTML/about"); 
   });
+
 
   app.get("/reminders-page", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/reminders.html"));

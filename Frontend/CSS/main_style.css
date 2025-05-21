@@ -14,7 +14,12 @@ body {
 }
 
 
-
+.main-content-wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(2px);
+}
   
 .logout-button a {
     color: white;
@@ -70,7 +75,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: stretch;
 
     /* Background image settings */
     background-image: url('../Resources/Images/acb.avif');
