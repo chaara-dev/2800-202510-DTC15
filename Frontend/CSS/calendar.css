@@ -1,3 +1,4 @@
+
 .date-number {
     font-weight: 600;
     color: #2e7d32;
@@ -5,20 +6,7 @@
     font-size: 0.9rem;
 }
 
-.watering-event {
-    padding: 0.25rem 0.5rem;
-    margin-top: 0.25rem;
-    border-radius: 0 0.25rem 0.25rem 0;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-}
-
 .current-day {
-    position: relative;
-}
-
-.current-day .date-number {
     background-color: #4caf50;
     color: white;
     display: inline-block;
@@ -29,8 +17,40 @@
     line-height: 1.5rem;
 }
 
+.watering-event {
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.watering-event:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .bg-white:hover {
     background-color: #f1f8e9 !important;
+}
+
+.grid.grid-cols-7>div {
+    min-height: 6rem;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .grid.grid-cols-7>div {
+        min-height: 4.5rem;
+    }
+
+    .watering-event {
+        padding: 0.15rem 0.3rem;
+        font-size: 0.65rem;
+    }
 }
 
 @media (max-width: 640px) {
@@ -41,6 +61,13 @@
     .watering-event {
         justify-content: center;
         padding: 0.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+    }
+
+    .watering-event i {
+        margin-right: 0;
     }
 
     .date-number {
@@ -48,6 +75,36 @@
     }
 
     .grid.grid-cols-7>div {
-        height: 3.5rem !important;
+        min-height: 3.5rem;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.watering-event.pulse {
+    animation: pulse 1s infinite;
+}
+
+@media print {
+    .watering-event {
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+
+    nav,
+    footer {
+        display: none;
     }
 }
