@@ -31,7 +31,7 @@ html {
     align-items: center;
     flex-wrap: wrap;
     padding: 1rem 2rem;
-    background-color: rgba(0, 51, 0, 0.7);
+    background-color: #0C4A2Cd4;
     color: white;
     position: sticky;
     top: 0;
@@ -238,7 +238,7 @@ h1 {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgba(0, 51, 0, 0.7);
+        background-color: #0C4A2Cd4;
         overflow: hidden;
         max-height: 0;
         transition: max-height 0.4s ease;
@@ -290,6 +290,8 @@ h1 {
 
     #chat-toggle {
         padding: 8px 14px;
+        margin-left: 4rem;
+        margin-bottom: 2rem;
         font-size: 0.9rem;
     }
 
