@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlantPal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+        rel="stylesheet">
+    <link href="../CSS/style_home.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style_footer.css">
+    <link rel="stylesheet" href="../CSS/main_style.css">
+    <link rel="stylesheet" href="../CSS/style_index.css">
+</head>
+
+<body class=" background flex flex-col min-h-screen ">
+    <nav
+        class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-[#F9F9F6] top-0 z-50">
+        <!-- Brand + Hamburger -->
+        <div class="flex items-center justify-between w-full md:w-auto">
+            <div class="text-2xl font-bold flex items-center">
+                <i class="fas fa-leaf mr-2 text-white"></i>
+                <span class="nav-brand">PlantPal</span>
+            </div>
+            <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="reminders.html">Reminders</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="location.html">Location</a>
+            <a href="settings.html">Settings</a>
+            <div class="logout-button">
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Weather Info Banner -->
+    <div class="bg-[#2F5931d4] text-[#F9F9F6] text-center py-1 shadow-md">
+        <p id="location" class="text-sm font-semibold md:text-base">📍 Unable to retrieve your location.</p>
+        <p class="text-sm font-semibold md:text-base" id="weather">Fetching weather...</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main flex-1  mx-auto ">
+
+        <!-- Welcome Card -->
+        <div class=" relative flex items-center justify-center max-w-4xl mx-auto mt-12 p-2 md:p-10 rounded-3xl shadow-xl text-center text-white bg-[#0C4A2C]/80 font-[Emilys_Candy]"
+            style="min-height: 250px;">
+
+            <!-- Lottie Animation -->
+            <div class="absolute left-0 md:left-8 top-1/2 transform -translate-y-1/2 z-0">
+                <dotlottie-player src="https://lottie.host/98e4482a-7af1-452e-ac32-761cf28c9641/DBjbLmnUm9.lottie"
+                    background="transparent" speed="1"
+                    class="w-[250px] h-[280px] md:w-[280px] md:h-[280px] xl:w-[340px] xl:h-[340px]" loop autoplay>
+                </dotlottie-player>
+            </div>
+
+            <!-- Welcome Text -->
+            <div class="relative z-10 w-full pl-[125px] md:pl-[200px] xl:pl-[200px]">
+                <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold mb-2 text-white text-left">
+                    Welcome
+                    </span>
+                </h1>
+                <p class="text-md md:text-xl xl:text-2xl mb-1 text-white">Track and grow your plants below!</p>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mt-8 flex justify-center gap-4 flex-wrap">
+            <a href="/plants"
+                class="px-6 py-3 bg-[#A4FFB1] hover:bg-[#8ae29d] text-[#064E3B] font-bold rounded-full shadow-md text-sm md:text-base xl:text-lg transition duration-200">
+                View My Plants
+            </a>
+            <a href="/add-plant"
+                class="px-6 py-3 bg-[#A4FFB1] hover:bg-[#8ae29d] text-[#064E3B] font-bold rounded-full shadow-md text-sm md:text-base xl:text-lg transition duration-200">
+                Add New Plant
+            </a>
+        </div>
+    </div>
+
+
+    
+
+    <button id="chat-toggle" onclick="toggleChat()">Need help?</button>
+
+    <div id="chat-popup" style="display: none;">
+        <div id="chat-header">
+            <span>PlantPal Assistant</span>
+            <button onclick="toggleChat()">✖</button>
+        </div>
+
+        <div id="chat-box" style="height: 150px; overflow-y: auto;"></div>
+
+        <input id="chat-input" type="text" placeholder="Ask a plant question...">
+        <button id="chat-send">Send</button>
+    </div>
+
+
+
+    <footer class="footer bg-[#0C4A2Cd4]">
+        <div class="footer-brand">
+            <i class="fas fa-leaf mr-2 text-[#F9F9F6] text-2xl md:text-3xl"></i>
+            <p class="footer-title text-center">PlantPal</p>
+        </div>
+        <div class="footer-links">
+            <a href="home.html"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+            <a href="about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+            <a href="contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact" class="footer-icon"></a>
+        </div>
+        <p class="footer-copy mt-3">&copy; 2025 PlantPal. All rights reserved.</p>
+    </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.getElementById("menu-toggle");
+            const nav = document.getElementById("nav-links");
+
+            toggle.addEventListener("click", () => {
+                nav.classList.toggle("active");
+            });
+        });
+
+    </script>
+
+
+    <script src="/scripts/chatbot.js"></script>
+    <script src="location.js"></script>
+
+</body>
+
+</html>
