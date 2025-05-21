@@ -1,0 +1,161 @@
+.nav-brand {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight:bolder;
+}
+
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background-color: #0C4A2Cd4;
+    color: white;
+    position: relative;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    margin-left: auto;
+    
+}
+
+
+.nav-links a {
+    color: #ffffff;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a:hover {
+    color: #a6e3a1;
+}
+
+
+@media (max-width: 768px) {
+    .footer-title {
+        font-family: "Delius Swash Caps", cursive;
+        font-size: x-large;
+        font-weight: 600;
+        text-align: center;
+        margin: 0.4rem 0; /* reduced spacing */
+      }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px; /* even spacing between icons */
+        margin: 0.4rem 0;
+      }
+
+    .footer-icon {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+    }
+
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+       
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0C4A2Cd4;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease;
+        z-index: 9;
+    }
+
+    .nav-links.active {
+        max-height: 500px;
+        
+    }
+
+    .nav-links a {
+        margin: 0.5rem 0;
+        text-align: left;
+        padding: 0.25rem 1rem;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav-links a:hover {
+        background-color: #044231d5;
+        color: white;
+    }
+
+}
+
+.footer {
+    max-width: 100%;
+    overflow: hidden;
+    background-color: #0C4A2Cd4 !important;
+}
+
+.footer-icon {
+    max-width: 100%;
+    height: auto;
+}
+
+.footer-icon:hover {
+    transform: scale(1.2);
+    filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
+  } 
+
+  
+  #weather-icon {
+    display: inline;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    /* margin-left: 8px; */
+  }
+  
+  .card{
+    background: #0c4a2cac;
+  }
+  
+  .main{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .main{
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+  }
