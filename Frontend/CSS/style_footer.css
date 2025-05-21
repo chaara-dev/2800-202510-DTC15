@@ -1,6 +1,6 @@
 .footer {
   background-color: rgba(0, 51, 0, 0.7);
-  color: #f0fdf4;
+  color: #F9F9F6;
   padding: 0.4rem 0.5rem; /* reduced padding */
   text-align: center;
   border-top-left-radius: 20px;
@@ -14,7 +14,8 @@
 }
 
 .footer-title {
-  font-size: x-large;
+  font-family: "Delius Swash Caps", cursive;
+  font-size: xx-large;
   font-weight: 600;
   text-align: center;
   margin: 0.4rem 0; /* reduced spacing */
@@ -25,7 +26,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px; /* even spacing between icons */
+  gap: 70px; /* even spacing between icons */
   margin: 0.4rem 0;
 }
 
@@ -43,8 +44,9 @@
 }
 
 .footer-copy {
-  font-size: large; /* slightly smaller text */
+  font-size: medium; /* slightly smaller text */
   opacity: 0.75;
+  margin: top 2px;;
 }
 
 .footer-brand {
@@ -58,5 +60,26 @@
 .footer-brand svg {
   height: 28px;
   width: 28px;
-  fill: #f0fdf4;
+  fill: #F9F9F6;
+}
+
+@media (max-width: 768px) {
+  .footer-title {
+      font-family: "Delius Swash Caps", cursive;
+      font-size: x-large;
+      font-weight: 600;
+      text-align: center;
+      margin: 0.4rem 0;
+      /* reduced spacing */
+  }
+
+  .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      /* even spacing between icons */
+      margin: 0.4rem 0;
+  }
 }

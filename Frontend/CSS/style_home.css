@@ -1,107 +1,3 @@
-body{
-    font-family: "Emilys Candy", serif;
-}
-
-.date-number {
-    font-weight: 600;
-    color: #2e7d32;
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
-}
-
-.watering-event {
-    padding: 0.25rem 0.5rem;
-    margin-top: 0.25rem;
-    border-radius: 0 0.25rem 0.25rem 0;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-}
-
-.current-day {
-    position: relative;
-}
-
-.current-day .date-number {
-    background-color: #2E8B57;
-    color: white;
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 1.5rem;
-}
-
-.bg-white:hover {
-    background-color: #f1f8e9 !important;
-}
-
-@media (max-width: 640px) {
-    .watering-event span {
-        display: none;
-    }
-
-    .watering-event {
-        justify-content: center;
-        padding: 0.25rem;
-    }
-
-    .date-number {
-        font-size: 0.8rem;
-    }
-
-    .grid.grid-cols-7>div {
-        height: 3.5rem !important;
-    }
-}
-
-
-
-
-.backimage {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    /* Background image settings */
-    background-image: url('../Resources/Images/acb.avif');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
-
-    /* Ensure it clips child overflow */
-    
-}
-
-.backimage::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Slight dark overlay for readability */
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* Ensure content stays above overlay */
-.backimage > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* Responsive behavior for mobile screens */
-@media (max-width: 768px) {
-    .backimage {
-        background-attachment: scroll; /* Prevents "jumping" on mobile */
-    }
-
-    
-}
-
-
 .nav-brand {
     font-family: "Delius Swash Caps", cursive;
     font-weight:bolder;
@@ -226,6 +122,7 @@ body{
 .footer {
     max-width: 100%;
     overflow: hidden;
+    background-color: #0C4A2Cd4 !important;
 }
 
 .footer-icon {
@@ -238,3 +135,27 @@ body{
     filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
   } 
 
+  
+  #weather-icon {
+    display: inline;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    /* margin-left: 8px; */
+  }
+  
+  .card{
+    background: #0c4a2cac;
+  }
+  
+  .main{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .main{
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+  }

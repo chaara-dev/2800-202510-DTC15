@@ -1,3 +1,5 @@
+
+
 .remember-line {
     display: flex;
     align-items: baseline; 
@@ -24,7 +26,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 15px;
@@ -75,3 +78,4 @@
 .back-link:hover {
     text-decoration: underline;
 }
+
