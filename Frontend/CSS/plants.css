@@ -1,0 +1,43 @@
+.clip-half {
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.alert-card {
+    transition: all 0.3s ease;
+}
+
+.alert-card:hover {
+    transform: translateY(-2px);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.urgent-alert {
+    animation: pulse 2s infinite;
+    border-left-color: #ef4444 !important;
+}
+
+@media (max-width: 640px) {
+    .plant-card {
+        flex-direction: column;
+    }
+
+    .plant-card img {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
