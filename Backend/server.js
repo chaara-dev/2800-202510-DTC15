@@ -233,6 +233,16 @@ async function main() {
     }
   });
 
+    app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Logout error:", err);
+        return res.status(500).send("Logout failed.");
+      }
+      res.redirect("/HTML/login.html"); 
+    });
+  });
+
   app.get("/timeline", async (req, res) => {
     try {
       const timelineFound = await timelineModel.find({
