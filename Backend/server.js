@@ -193,6 +193,23 @@ async function main() {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/about.html"));
   });
 
+  app.get("/reminders", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/reminders.html"));
+  });
+
+  app.get("/location", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/location.html"));
+  });
+
+  app.get("/calendar", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/calendar.html"));
+  });
+
+  app.get("/settings", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/HTML/settings.html"));
+  });
+
+
   app.get("/contact", (_req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/contact.html"));
   });
@@ -316,6 +333,8 @@ async function main() {
     await reminder.save();
     res.status(200).json(reminder);
   });
+
+  
 
   app.post("/deleteplant/:id", isAuthenticated, async (req, res) => {
     const plantId = req.params.id;
