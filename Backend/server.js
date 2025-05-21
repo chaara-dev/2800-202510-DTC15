@@ -317,6 +317,19 @@ async function main() {
     res.status(200).json(reminder);
   });
 
+  app.post("/deleteplant/:id", isAuthenticated, async (req, res) => {
+    const plantId = req.params.id;
+    const username = req.session.user.username;
+
+  try {
+    await plantModel.findOneAndDelete({ _id: plantId, username });
+    res.redirect("/myplants");
+    } catch (err) {
+    console.error("Failed to delete plant:", err);
+    res.status(500).send("Error deleting plant.");
+    }
+  });
+
   app.delete("/reminders/:id", async (req, res) => {
     try {
       const { id } = req.params;

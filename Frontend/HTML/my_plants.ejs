@@ -58,6 +58,11 @@
                 <p><strong>Watering:</strong> <%= plant.watering || '—' %></p>
                 <p><strong>Duration:</strong> <%= plant.duration || '—' %></p>
               </div>
+                
+              <form method="POST" action="/deleteplant/<%= plant._id %>">
+                  <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm">Delete</button>
+                </form>
+              
             </div>
           <% }) %>
         </div>
