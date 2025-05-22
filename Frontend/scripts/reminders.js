@@ -44,7 +44,7 @@ async function loadReminders() {
                 <span class="reminderName">${reminder.plantName}</span>
                 &nbsp;
                 <span class="reminderTime">${reminder.timeOfDay}</span>
-                <button class="delete-btn" onclick="deleteReminder('${reminder._id}')">delete</button>
+                <button class="delete-btn" onclick="deleteReminder('${reminder._id}')">Delete</button>
                 `;
             container.appendChild(div);
         });
