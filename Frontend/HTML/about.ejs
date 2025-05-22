@@ -2,95 +2,96 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PlantPal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantPal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
-        rel="stylesheet">
-    <link href="../CSS/style_home.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/style_footer.css">
-    <link rel="stylesheet" href="../CSS/main_style.css">
-    <link rel="stylesheet" href="../CSS/style_index.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+    rel="stylesheet">
+  <link href="../CSS/style_home.css" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style_footer.css">
+  <link rel="stylesheet" href="../CSS/main_style.css">
+  <link rel="stylesheet" href="../CSS/about.css">
 </head>
 
-<body class=" background flex flex-col min-h-screen ">
-    <nav
-        class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-[#F9F9F6] top-0 z-50">
-        <div class="flex items-center justify-between w-full md:w-auto">
-            <div class="text-2xl font-bold flex items-center">
-                <i class="fas fa-leaf mr-2 text-white"></i>
-                <span class="nav-brand">PlantPal</span>
-            </div>
-            <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
-        </div>
-
-
-        <div class="nav-links" id="nav-links">
-            <a href="/home">Home</a>
-            <a href="/reminders-page">Reminders</a>
-            <a href="/HTML/location.html">Location</a>
-            <a href="/HTML/calendar.html">Calendar</a>
-            <a href="/HTML/settings.html">Settings</a>
-            <div class="logout-button">
-                <a href="/logout">Logout</a>
-            </div>
-        </div>
-    </nav>
-
-<main class="main-content-wrapper flex-1 px-6 md:px-12 pt-16 pb-20 max-w-6xl mx-auto text-[#F9F9F6]">
-  <section class="mb-16">
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-4 flex items-center gap-2">
-      <i class="fas fa-seedling text-emerald-600"></i> About PlantPal
-    </h1>
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <p class="text-base md:text-lg mb-4 font-medium">
-          PlantPal helps you never forget to water your plants again with smart reminders and care tips.
-        </p>
-        <ul class="space-y-2 text-[#F9F9F6] font-semibold">
-          <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Watering schedules</li>
-          <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Sunlight tracking</li>
-          <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Plant identification</li>
-        </ul>
+<body class=" backimage flex flex-col min-h-screen h-screen overflow-hidden ">
+  <nav
+    class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-[#F9F9F6] top-0 z-50">
+    <div class="flex items-center justify-between w-full md:w-auto">
+      <div class="text-2xl font-bold flex items-center">
+        <i class="fas fa-leaf mr-2 text-white"></i>
+        <span class="nav-brand">PlantPal</span>
       </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-          alt="Houseplants" class="rounded-2xl shadow-md w-full">
+      <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
+    </div>
+
+
+    <div class="nav-links" id="nav-links">
+      <a href="/HTML/plant.html">My Plants</a>
+      <a href="/reminders-page">Reminders</a>
+      <a href="/HTML/calendar.html">Calendar</a>
+      <a href="/HTML/settings.html">Settings</a>
+      <div class="logout-button">
+        <a href="/logout">Logout</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <section>
-    <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-2">Our Team</h2>
-    <p class="text-center mb-8 text-base md:text-lg font-medium">
-      We're a group of BCIT CST students passionate about building practical solutions through code.
-    </p>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
-      <% const team = [
-        { name: "Nio", term: "CST Term 1 student" },
-        { name: "Chaara", term: "CST Term 2 student" },
-        { name: "Koko", term: "CST Term 1 student" },
-        { name: "Petar", term: "CST Term 1 student" },
-        { name: "Gurman", term: "CST Term 2 student" }
-      ]; %>
-
-      <% team.forEach(member => { %>
-        <div class="bg-[#f0fdf4] rounded-xl p-4 text-center w-full max-w-xs shadow hover:shadow-lg transition">
-          <div class="w-16 h-16 mx-auto mb-3 bg-emerald-100 rounded-full flex items-center justify-center text-2xl text-emerald-600">
-            <i class="fas fa-user"></i>
-          </div>
-          <h3 class="font-bold text-lg text-[#0C4A2C]"><%= member.name %></h3>
-          <p class="text-sm text-gray-700"><%= member.term %></p>
+  <main class="main-content-wrapper overflow-y-auto flex-1 px-6 md:px-12 pt-16 pb-20 max-w-6xl mx-auto text-[#F9F9F6]">
+    <section class="mb-16">
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-4 flex items-center gap-2">
+        <i class="fas fa-seedling text-emerald-600"></i> About PlantPal
+      </h1>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-base md:text-lg mb-4 font-medium">
+            PlantPal helps you never forget to water your plants again with smart reminders and care tips.
+          </p>
+          <ul class="space-y-2 text-[#F9F9F6] font-semibold">
+            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Watering schedules</li>
+            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Sunlight tracking</li>
+            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Plant identification</li>
+          </ul>
         </div>
-      <% }); %>
-    </div>
-  </section>
-</main>
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            alt="Houseplants" class="rounded-2xl shadow-md w-full">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-2">Our Team</h2>
+      <p class="text-center mb-8 text-base md:text-lg font-medium">
+        We're a group of BCIT CST students passionate about building practical solutions through code.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
+        <% const team=[ { name: "Nio" , term: "CST Term 1 student" }, { name: "Chaara" , term: "CST Term 2 student" }, {
+          name: "Koko" , term: "CST Term 1 student" }, { name: "Petar" , term: "CST Term 1 student" }, { name: "Gurman"
+          , term: "CST Term 2 student" } ]; %>
+
+          <% team.forEach(member=> { %>
+            <div class="bg-[#f0fdf4] rounded-xl p-4 text-center w-full max-w-xs shadow hover:shadow-lg transition">
+              <div
+                class="w-16 h-16 mx-auto mb-3 bg-emerald-100 rounded-full flex items-center justify-center text-2xl text-emerald-600">
+                <i class="fas fa-user"></i>
+              </div>
+              <h3 class="font-bold text-lg text-[#0C4A2C]">
+                <%= member.name %>
+              </h3>
+              <p class="text-sm text-gray-700">
+                <%= member.term %>
+              </p>
+            </div>
+            <% }); %>
+      </div>
+    </section>
+  </main>
 
 
   <footer class="footer relative z-10 bg-[#0C4A2Cd4] text-[#F9F9F6]">
