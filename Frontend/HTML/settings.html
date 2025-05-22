@@ -79,7 +79,6 @@
                 </div>
             </a>
 
-
             <div class="menu-item">
                 <i class="fas fa-info-circle"></i>
                 <span>About</span>
@@ -116,6 +115,20 @@
                 nav.classList.toggle("active");
             });
         });
+
+            document.addEventListener("DOMContentLoaded", () => {
+        const menuItems = document.querySelectorAll(".settings-menu .menu-item");
+
+        menuItems.forEach(item => {
+            const spanText = item.querySelector("span")?.innerText.trim();
+            if (spanText !== "Logout") {
+                item.addEventListener("click", event => event.preventDefault());
+                item.style.pointerEvents = "none";
+                item.style.opacity = "0.4";
+                item.style.cursor = "not-allowed";
+            }
+        });
+    });
 
     </script>
 </body>
