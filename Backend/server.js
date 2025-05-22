@@ -360,7 +360,7 @@ app.get("/plants", isAuthenticated, async (req, res) => {
 
   try {
     await plantModel.findOneAndDelete({ _id: plantId, username });
-    res.redirect("/myplants");
+    res.redirect("/plants");
     } catch (err) {
     console.error("Failed to delete plant:", err);
     res.status(500).send("Error deleting plant.");
