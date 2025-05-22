@@ -294,7 +294,7 @@ app.get("/plants", isAuthenticated, async (req, res) => {
 
 
       await addToTimeline("Plant Added", `${plant_name} was added.`, new Date(), username);
-      res.redirect("/myplants");
+      res.redirect("/plants");
     } catch (err) {
       console.error("Failed to add plant:", err);
       res.status(500).send("Something went wrong while adding your plant.");
