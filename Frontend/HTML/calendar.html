@@ -85,11 +85,11 @@
         </div>
         <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-moss-200">
             <div class="bg-[#096f3e] text-white p-4 flex justify-between items-center">
-                <button class="p-2 rounded-full hover:bg-moss-700 transition">
+                <button id="prev-month" class="p-2 rounded-full hover:bg-moss-700 transition">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <h2 class="text-xl font-semibold">May 2025</h2>
-                <button class="p-2 rounded-full hover:bg-moss-700 transition">
+                <h2 id="month-year" class="text-xl font-semibold">May 2025</h2>
+                <button id="next-month" class="p-2 rounded-full hover:bg-moss-700 transition">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -102,43 +102,7 @@
                 <div class="p-2 text-center">Fri</div>
                 <div class="p-2 text-center">Sat</div>
             </div>
-            <div class="grid grid-cols-7 gap-px bg-moss-200">
-                <div class="bg-moss-50 h-24 p-1"></div>
-                <div class="bg-moss-50 h-24 p-1"></div>
-                <div class="bg-white h-24 p-1 relative">
-                    <div class="date-number">1</div>
-                    <div class="watering-event bg-moss-100 border-l-4 border-moss-500">
-                        <i class="fas fa-tint text-moss-600 mr-1"></i>
-                        <span class="text-xs">Monstera</span>
-                    </div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">2</div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">3</div>
-                    <div class="watering-event bg-sage-100 border-l-4 border-sage-500">
-                        <i class="fas fa-tint text-sage-600 mr-1"></i>
-                        <span class="text-xs">Fern</span>
-                    </div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">4</div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">5</div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">6</div>
-                </div>
-                <div class="bg-white h-24 p-1">
-                    <div class="date-number">7</div>
-                    <div class="watering-event bg-moss-100 border-l-4 border-moss-500">
-                        <i class="fas fa-tint text-moss-600 mr-1"></i>
-                        <span class="text-xs">Pothos</span>
-                    </div>
-                </div>
-
+            <div id="calendar-days" class="grid grid-cols-7 gap-px bg-moss-200">
             </div>
         </div>
 
@@ -156,7 +120,7 @@
                     <span class="text-sm text-moss-800">Watered this week</span>
                 </div>
                 <div class="flex items-center">
-                    <div class="w-4 h-4 bg-amber-200 rounded mr-2"></div>
+                    <div class="w-4 h-4 bg-earth-500 rounded mr-2"></div>
                     <span class="text-sm text-moss-800">Needs water</span>
                 </div>
             </div>
@@ -178,19 +142,93 @@
         <p class="footer-copy mt-3">&copy; 2025 PlantPal. All rights reserved.</p>
     </footer>
 
-
-
-
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const toggle = document.getElementById("menu-toggle");
-            const nav = document.getElementById("nav-links");
+        document.addEventListener('DOMContentLoaded', function () {
+            const monthYearDisplay = document.getElementById('month-year');
+            const calendarDays = document.getElementById('calendar-days');
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
 
-            toggle.addEventListener("click", () => {
-                nav.classList.toggle("active");
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+
+            function renderCalendar() {
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+                monthYearDisplay.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+                const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                const today = new Date();
+
+                calendarDays.innerHTML = '';
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'bg-moss-50 h-24 p-1';
+                    calendarDays.appendChild(emptyDay);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'bg-white h-24 p-1 relative hover:bg-moss-50';
+
+                    const isCurrentDay = day === today.getDate() &&
+                        currentMonth === today.getMonth() &&
+                        currentYear === today.getFullYear();
+
+                    dayElement.innerHTML = `
+                        <div class="date-number ${isCurrentDay ? 'current-day' : ''}">${day}</div>
+                        ${getWateringEvents(day)}
+                    `;
+
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+
+            function getWateringEvents(day) {
+                const events = {
+                    3: { plant: 'Monstera', color: 'moss' },
+                    5: { plant: 'Fern', color: 'sage' },
+                    8: { plant: 'Pothos', color: 'moss' },
+                    12: { plant: 'Snake Plant', color: 'earth' },
+                    15: { plant: 'Spider Plant', color: 'sage' },
+                    20: { plant: 'Rubber Plant', color: 'moss' },
+                    25: { plant: 'ZZ Plant', color: 'earth' },
+                    28: { plant: 'Peace Lily', color: 'sage' }
+                };
+
+                if (events[day]) {
+                    return `
+                        <div class="watering-event bg-${events[day].color}-100 border-l-4 border-${events[day].color}-500">
+                            <i class="fas fa-tint text-${events[day].color}-600 mr-1"></i>
+                            <span class="text-xs">${events[day].plant}</span>
+                        </div>
+                    `;
+                }
+                return '';
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar();
             });
-        });
 
+            nextBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+            renderCalendar();
+        });
     </script>
 </body>
 
