@@ -219,12 +219,13 @@ async function main() {
     res.sendFile(path.join(__dirname, "../Frontend/HTML/contact.html"));
   });
     
-  app.get("/myplants", isAuthenticated, async (req, res) => {
-    const username = req.session.user.username;
-    const userPlants = await plantModel.find({ username });
+app.get("/plants", isAuthenticated, async (req, res) => {
+  const username = req.session.user.username;
+  const userPlants = await plantModel.find({ username });
 
-    res.render("HTML/my_plants", { username, userPlants });
-  });
+  res.render("HTML/plants", { username, userPlants }); 
+});
+
 
 
   app.get("/favorites", async (req, res) => {

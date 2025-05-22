@@ -71,92 +71,39 @@
         </div>
 
         <section class="mb-8">
-            <h2 class="text-2xl font-bold text-[#F9F9F6] mb-4 flex items-center">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i> Alerts
-            </h2>
+        <h2 class="text-2xl font-bold text-[#F9F9F6] mb-4 flex items-center">
+            <i class="fas fa-seedling text-green-500 mr-2"></i> My Plants
+        </h2>
 
-            <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-400">
-                <div class="flex items-start mb-4">
-                    <img src="https://images.pexels.com/photos/5529605/pexels-photo-5529605.jpeg"
-                        alt="Fresh harvested eggplants in a wooden box" class="w-16 h-16 rounded-lg object-cover mr-4">
-                    <div>
-                        <h3 class="font-bold text-lg text-yellow-800">Eggplant</h3>
-                        <p class="text-yellow-700">This plant needs water (110ml)</p>
-                        <button class="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-full text-sm">
-                            Water Now
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex items-start">
-                    <img src="https://cdn.pixabay.com/photo/2018/04/29/11/54/strawberries-3359755_640.jpg"
-                        alt="Strawberries" class="w-16 h-16 rounded-lg object-cover mr-4">
-                    <div>
-                        <h3 class="font-bold text-lg text-yellow-800">Strawberries</h3>
-                        <p class="text-yellow-700">Needs more sunlight (move to south window)</p>
-                        <button class="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-full text-sm">
-                            Mark as Done
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold text-[#F9F9F6] mb-4 flex items-center">
-                <i class="fas fa-seedling text-green-500 mr-2"></i> My Plants
-            </h2>
-
+        <% if (userPlants.length === 0) { %>
+            <p class="text-white">You haven't added any plants yet!</p>
+        <% } else { %>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <% userPlants.forEach(plant => { %>
                 <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://cdn.pixabay.com/photo/2014/04/10/11/06/tomatoes-320860_1280.jpg" alt="Tomato"
-                        class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-bold text-xl text-green-800 mb-2">Tomato</h3>
-                        <div class="flex justify-between text-sm text-gray-600 mb-3">
-                            <span><i class="fas fa-tint text-blue-400 mr-1"></i> Watered: 2h ago</span>
-                            <span><i class="fas fa-sun text-yellow-400 mr-1"></i> 8h light</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 75%"></div>
-                        </div>
+                <% if (plant.image && plant.image !== '—') { %>
+                    <img src="<%= plant.image %>" alt="<%= plant.name %>" class="w-full h-48 object-cover">
+                <% } else { %>
+                    <div class="w-full h-48 bg-emerald-100 flex items-center justify-center text-sm text-emerald-600">No Image Added</div>
+                <% } %>
+                <div class="p-4">
+                    <h3 class="font-bold text-xl text-green-800 mb-2"><%= plant.name %></h3>
+                    <div class="flex justify-between text-sm text-gray-600 mb-3">
+                    <span><i class="fas fa-tint text-blue-400 mr-1"></i> Watered: 2h ago</span>
+                    <span><i class="fas fa-sun text-yellow-400 mr-1"></i> 8h light</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-green-500 h-2.5 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow plant-card">
-                    <img src="https://images.pexels.com/photos/1487010/pexels-photo-1487010.jpeg"
-                        alt="Field of yellow and red tulips" class="w-full h-48 object-cover"
-                        onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1487010/pexels-photo-1487010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';this.onerror=function(){this.src='https://cdn.pixabay.com/photo/2018/01/29/07/11/flower-3115353_640.jpg'}">
-                    <div class="p-4">
-                        <h3 class="font-bold text-xl text-green-800 mb-2">Tulips</h3>
-                        <div class="flex justify-between text-sm text-gray-600 mb-3">
-                            <span><i class="fas fa-tint text-blue-400 mr-1"></i> Watered: 2d ago</span>
-                            <span><i class="fas fa-sun text-yellow-400 mr-1"></i> 12h light</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 70%"></div>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://images.pexels.com/photos/2575378/pexels-photo-2575378.jpeg"
-                        alt="Fresh basil leaves on white surface" class="w-full h-48 object-cover object-center"
-                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/2718/2718224.png'">
-                    <div class="p-4">
-                        <h3 class="font-bold text-xl text-green-800 mb-2">Basil</h3>
-                        <div class="flex justify-between text-sm text-gray-600 mb-3">
-                            <span><i class="fas fa-tint text-blue-400 mr-1"></i> Watered: 3h ago</span>
-                            <span><i class="fas fa-sun text-yellow-400 mr-1"></i> 7h light</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
+            <% }); %>
             </div>
+        <% } %>
         </section>
 
+
+        
         <section>
             <h2 class="text-2xl font-bold text-[#F9F9F6] mb-4 flex items-center">
                 <i class="fas fa-chart-line text-blue-500 mr-2"></i> Statistics
