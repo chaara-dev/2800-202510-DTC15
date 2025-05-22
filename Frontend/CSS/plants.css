@@ -175,3 +175,8 @@ body{
     transform: scale(1.2);
     filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
   } 
+
+  .nav-brand {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight:bolder;
+}
