@@ -2,143 +2,150 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reminders</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link
     href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
     rel="stylesheet">
-    <link href="../CSS/contact.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/style_footer.css">
-    <link rel="stylesheet" href="../CSS/main_style.css">
-    <link rel="stylesheet" href="../CSS/style_reminders.css">
+ 
+  <link rel="stylesheet" href="../CSS/style_footer.css">
+  <link rel="stylesheet" href="../CSS/main_style.css">
+  <link rel="stylesheet" href="../CSS/add_plant.css">
 </head>
 
-<body class=" backimage flex flex-col min-h-screen ">
-    <nav
+<body class=" backimage flex flex-col min-h-screen h-screen overflow-hidden">
+  <nav
     class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-[#F9F9F6] top-0 z-50">
     <div class="flex items-center justify-between w-full md:w-auto">
-        <div class="text-2xl font-bold flex items-center">
-            <i class="fas fa-leaf mr-2 text-white"></i>
-            <span class="nav-brand">PlantPal</span>
-        </div>
-        <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
+      <div class="text-2xl font-bold flex items-center">
+        <i class="fas fa-leaf mr-2 text-white"></i>
+        <span class="nav-brand">PlantPal</span>
+      </div>
+      <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
     </div>
     <div class="nav-links" id="nav-links">
-        <a href="/home">Home</a>
-        <a href="/HTML/reminders.html">Reminders</a>
-        <a href="/HTML/location.html">Location</a>
-        <a href="/HTML/calendar.html">Calendar</a>
-        <a href="/HTML/settings.html">Settings</a>
-        <div class="logout-button">
-            <a href="/logout">Logout</a>
-        </div>
+      <a href="/HTML/plant.html">My Plants</a>
+      <a href="/reminders-page">Reminders</a>
+      <a href="/HTML/calendar.html">Calendar</a>
+      <a href="/HTML/settings.html">Settings</a>
+      <div class="logout-button">
+        <a href="/logout">Logout</a>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<main class="flex-1 flex justify-center items-center px-4 py-12">
-  <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-8 w-full max-w-lg text-center">
-    <h1 class="text-3xl font-bold text-[#0C4A2C] mb-1">Add New Plant</h1>
-    <p class="text-sm text-gray-600 mb-6">Track your plant’s growth journey</p>
+  <main class="flex-1 flex justify-center overflow-y-auto items-center px-4 py-12 mt-6">
+    <div class="bg-white/70 backdrop-blur-md rounded-xl shadow-xl p-8 w-full max-w-lg text-center">
+      <h1 class="text-3xl font-bold text-[#0C4A2C] mb-1">Add New Plant</h1>
+      <p class="text-sm text-[#0C4A2C] mb-6">Track your plant’s growth journey</p>
 
-    <% if (duplicate) { %>
-      <div class="bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded mb-4 text-sm">
-        This plant is already in your collection!
-      </div>
-    <% } %>
+      <% if (duplicate) { %>
+        <div class="bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded mb-4 text-sm">
+          This plant is already in your collection!
+        </div>
+        <% } %>
 
-    <form action="/addplant" method="POST" class="space-y-6">
-      <div class="text-left">
-        <label class="block mb-1 font-medium text-[#0C4A2C]" for="plant_name">Plant Name</label>
-        <input type="text" id="plant_name" name="plant_name" required
-          placeholder="e.g. Monstera Deliciosa"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400" />
-      </div>
+          <form action="/addplant" method="POST" class="space-y-6">
+            <div class="text-left">
+              <label class="block mb-1 font-medium text-[#0C4A2C]" for="plant_name">Plant Name</label>
+              <input type="text" id="plant_name" name="plant_name" required placeholder="e.g. Monstera Deliciosa"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400" />
+            </div>
 
-      <input type="hidden" name="image" id="image" value="—" />
-      <input type="hidden" name="scientific_name" id="scientific_name" value="—">
-      <input type="hidden" name="sunlight" id="sunlight" value="—">
-      <input type="hidden" name="watering" id="watering" value="—">
-      <input type="hidden" name="duration" id="duration" value="—">
+            <input type="hidden" name="image" id="image" value="—" />
+            <input type="hidden" name="scientific_name" id="scientific_name" value="—">
+            <input type="hidden" name="sunlight" id="sunlight" value="—">
+            <input type="hidden" name="watering" id="watering" value="—">
+            <input type="hidden" name="duration" id="duration" value="—">
 
-      <button type="submit"
-        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow">
-        <i class="fas fa-plus mr-2"></i> Add Plant
-      </button>
-    </form>
+            <button type="submit"
+              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow">
+              <i class="fas fa-plus mr-2"></i> Add Plant
+            </button>
+          </form>
 
-    <a href="/myplants" class="inline-block mt-6 text-emerald-700 hover:underline text-sm">
-      ← Back to My Plants
-    </a>
-  </div>
-</main>
+          <a href="/myplants" class="inline-block mt-6 text-emerald-700 hover:underline text-sm">
+            ← Back to My Plants
+          </a>
+    </div>
+  </main>
 
-<footer class="footer bg-[#0C4A2Cd4] text-white py-4 mt-auto">
-  <div class="footer-brand">
-    <i class="fas fa-leaf text-2xl"></i>
-    <p class="footer-title">PlantPal</p>
-  </div>
-  <div class="footer-links">
-    <a href="/home"><img src="/Resources/Icons/home.png" alt="home" class="footer-icon" /></a>
-    <a href="/about"><img src="/Resources/Icons/info.png" alt="about" class="footer-icon" /></a>
-    <a href="/contact"><img src="/Resources/Icons/contact-us.png" alt="contact" class="footer-icon" /></a>
-  </div>
-  <p class="footer-copy text-center">&copy; 2025 PlantPal. All rights reserved.</p>
-</footer>
+  <footer class="footer bg-[#0C4A2Cd4] text-white py-4 mt-auto">
+    <div class="footer-brand">
+      <i class="fas fa-leaf text-2xl"></i>
+      <p class="footer-title">PlantPal</p>
+    </div>
+    <div class="footer-links">
+      <a href="/home"><img src="/Resources/Icons/home.png" alt="home" class="footer-icon" /></a>
+      <a href="/about"><img src="/Resources/Icons/info.png" alt="about" class="footer-icon" /></a>
+      <a href="/contact"><img src="/Resources/Icons/contact-us.png" alt="contact" class="footer-icon" /></a>
+    </div>
+    <p class="footer-copy text-center">&copy; 2025 PlantPal. All rights reserved.</p>
+  </footer>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("plant_name");
-  const suggestionsBox = document.createElement("ul");
-  suggestionsBox.id = "suggestions";
-  suggestionsBox.className = "absolute w-full bg-white border border-gray-300 rounded-lg mt-1 z-10 hidden max-h-40 overflow-y-auto text-sm";
-  input.parentNode.appendChild(suggestionsBox);
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const input = document.getElementById("plant_name");
+      const suggestionsBox = document.createElement("ul");
+      suggestionsBox.id = "suggestions";
+      suggestionsBox.className = "absolute w-full bg-white border border-gray-300 rounded-lg mt-1 z-10 hidden max-h-40 overflow-y-auto text-sm";
+      input.parentNode.appendChild(suggestionsBox);
 
-  input.addEventListener("input", async () => {
-    const query = input.value.trim();
-    if (query.length < 2) {
-      suggestionsBox.classList.add("hidden");
-      return;
-    }
-
-    try {
-      const res = await fetch(`/api/plants/${query}`);
-      const data = await res.json();
-      const results = Array.isArray(data) ? data : [data];
-
-      suggestionsBox.innerHTML = "";
-      results.forEach((plant) => {
-        const li = document.createElement("li");
-        li.textContent = plant.common_name || plant.name;
-        li.className = "px-4 py-2 cursor-pointer hover:bg-emerald-100";
-        li.addEventListener("click", () => {
-          input.value = li.textContent;
-          document.querySelector("input[name='scientific_name']").value = plant.scientific_name || "—";
-          document.querySelector("input[name='sunlight']").value = plant.sunlight || "—";
-          document.querySelector("input[name='watering']").value = plant.watering || "—";
-          document.querySelector("input[name='duration']").value = plant.duration || "—";
-          document.querySelector("input[name='image']").value = plant.image || "";
+      input.addEventListener("input", async () => {
+        const query = input.value.trim();
+        if (query.length < 2) {
           suggestionsBox.classList.add("hidden");
-        });
-        suggestionsBox.appendChild(li);
+          return;
+        }
+
+        try {
+          const res = await fetch(`/api/plants/${query}`);
+          const data = await res.json();
+          const results = Array.isArray(data) ? data : [data];
+
+          suggestionsBox.innerHTML = "";
+          results.forEach((plant) => {
+            const li = document.createElement("li");
+            li.textContent = plant.common_name || plant.name;
+            li.className = "px-4 py-2 cursor-pointer hover:bg-emerald-100";
+            li.addEventListener("click", () => {
+              input.value = li.textContent;
+              document.querySelector("input[name='scientific_name']").value = plant.scientific_name || "—";
+              document.querySelector("input[name='sunlight']").value = plant.sunlight || "—";
+              document.querySelector("input[name='watering']").value = plant.watering || "—";
+              document.querySelector("input[name='duration']").value = plant.duration || "—";
+              document.querySelector("input[name='image']").value = plant.image || "";
+              suggestionsBox.classList.add("hidden");
+            });
+            suggestionsBox.appendChild(li);
+          });
+
+          suggestionsBox.classList.toggle("hidden", results.length === 0);
+        } catch (err) {
+          console.error("Autocomplete fetch error:", err);
+          suggestionsBox.classList.add("hidden");
+        }
       });
 
-      suggestionsBox.classList.toggle("hidden", results.length === 0);
-    } catch (err) {
-      console.error("Autocomplete fetch error:", err);
-      suggestionsBox.classList.add("hidden");
-    }
-  });
+      document.addEventListener("click", (e) => {
+        if (!suggestionsBox.contains(e.target) && e.target !== input) {
+          suggestionsBox.classList.add("hidden");
+        }
+      });
 
-  document.addEventListener("click", (e) => {
-    if (!suggestionsBox.contains(e.target) && e.target !== input) {
-      suggestionsBox.classList.add("hidden");
-    }
-  });
-});
-</script>
+      const toggle = document.getElementById("menu-toggle");
+      const nav = document.getElementById("nav-links");
+
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+
+    });
+  </script>
 
 </body>
+
 </html>
