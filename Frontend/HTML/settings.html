@@ -5,59 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlantPal Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Emilys+Candy&family=Mea+Culpa&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tagesschrift&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style_footer.css">
+    <link rel="stylesheet" href="../CSS/main_style.css">
     <link href="../css/style_settings.css" rel="stylesheet">
 
 </head>
 
-<body>
-    <div class="profile-header">
-        <a href="#" class="profile-link">My Profile</a>
-    </div>
-
-    <div class="profile-icon">
-        <div class="icon-circle">
-            <i class="fas fa-user"></i>
-        </div>
-    </div>
-
-    <div class="settings-menu">
-        <div class="menu-item">
-            <i class="fas fa-bell"></i>
-            <span>Notifications</span>
-            <i class="fas fa-chevron-right"></i>
+<body class=" backimage flex flex-col min-h-screen ">
+    <nav
+        class="navbar flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-[#0C4A2Cd4] text-[#F9F9F6] top-0 z-50">
+        <div class="flex items-center justify-between w-full md:w-auto">
+            <div class="text-2xl font-bold flex items-center">
+                <i class="fas fa-leaf mr-2 text-white"></i>
+                <a class="nav-brand" href="/home">PlantPal</a>
+            </div>
+            <button class="menu-toggle md:hidden text-3xl" id="menu-toggle">&#9776;</button>
         </div>
 
-        <div class="menu-item">
-            <i class="fas fa-user-edit"></i>
-            <span>Edit Profile</span>
-            <i class="fas fa-chevron-right"></i>
+        <div class="nav-links" id="nav-links">
+            <a href="/plants">My Plants</a>
+            <a href="/reminders-page">Reminders</a>
+            <a href="/HTML/calendar.html">Calendar</a>
+            <a href="/HTML/settings.html">Settings</a>
+            <div class="logout-button">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class=" flex-1 container mx-auto  max-w-6xl">
+
+
+        <div class="profile-icon mt-8">
+            <div class="icon-circle">
+                <i class="fas fa-user"></i>
+            </div>
         </div>
 
-        <div class="menu-item">
-            <i class="fas fa-clock"></i>
-            <span>Reminders</span>
-            <i class="fas fa-chevron-right"></i>
-        </div>
+        <div class="settings-menu mb-8 font-bold">
+            <div class="menu-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
 
-        <div class="menu-item">
-            <i class="fas fa-leaf"></i>
-            <span>Plant Identification</span>
-            <i class="fas fa-chevron-right"></i>
-        </div>
+            <div class="menu-item">
+                <i class="fas fa-user-edit"></i>
+                <span>Edit Profile</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
 
-        <div class="menu-item">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-            <i class="fas fa-chevron-right"></i>
-        </div>
+            <div class="menu-item">
+                <i class="fas fa-clock"></i>
+                <span>Reminders</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
 
-        <div class="menu-item">
-            <i class="fas fa-info-circle"></i>
-            <span>About</span>
-            <i class="fas fa-chevron-right"></i>
+            <div class="menu-item">
+                <i class="fas fa-leaf"></i>
+                <span>Plant Identification</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <a href="/logout">
+                <div class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <div class="menu-item">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
         </div>
-    </div>
+    </main>
+
+
+
+
+    <footer class="footer bg-[#0C4A2Cd4]">
+        <div class="footer-brand">
+            <i class="fas fa-leaf mr-2 text-[#F9F9F6] text-2xl md:text-3xl"></i>
+            <p class="footer-title text-center">PlantPal</p>
+        </div>
+        <div class="footer-links">
+            <a href="/home"><img src="../Resources/Icons/home.png" alt="home" class="footer-icon"></a>
+            <a href="/HTML/about.html"><img src="../Resources/Icons/info.png" alt="about" class="footer-icon"></a>
+            <a href="/HTML/contact.html"><img src="../Resources/Icons/contact-us.png" alt="contact"
+                    class="footer-icon"></a>
+        </div>
+        <p class="footer-copy mt-3">&copy; 2025 PlantPal. All rights reserved.</p>
+    </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.getElementById("menu-toggle");
+            const nav = document.getElementById("nav-links");
+
+            toggle.addEventListener("click", () => {
+                nav.classList.toggle("active");
+            });
+        });
+
+            document.addEventListener("DOMContentLoaded", () => {
+        const menuItems = document.querySelectorAll(".settings-menu .menu-item");
+
+        menuItems.forEach(item => {
+            const spanText = item.querySelector("span")?.innerText.trim();
+            if (spanText !== "Logout") {
+                item.addEventListener("click", event => event.preventDefault());
+                item.style.pointerEvents = "none";
+                item.style.opacity = "0.4";
+                item.style.cursor = "not-allowed";
+            }
+        });
+    });
+
+    </script>
 </body>
 
 </html>

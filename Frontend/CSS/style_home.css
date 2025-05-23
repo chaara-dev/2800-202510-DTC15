@@ -1,80 +1,9 @@
-.content-wrapper {
-    color: black;
-    /* margin-left: auto;
-    margin-right: auto; */
-    margin-top: 1.25em;
+.nav-brand {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight:bolder;
 }
 
 
-.reminder-header {
-    text-align: center;
-    color: #F9F9F6;
-    font-size: 2em;
-    line-height: 150%;
-}
-
-#nextReminder {
-    color: darkgreen;
-    font-weight: bold;
-}
-
-.reminder-list {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    align-items: center;
-}
-
-.reminder-body {
-    background-color: lightgray;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 3.5em;
-    width: 90%;
-    margin: 5px;
-    border-radius: 15px;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
-
-    border: 1px solid green;
-}
-
-.reminder-body>img {
-    height: 50%;
-    margin-right: 1em;
-}
-
-.reminderTime {
-    margin-left: auto;
-}
-
-.reminder-toggle {
-    margin-left: 0.5em;
-}
-
-.reminder-footer {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    align-items: center;
-}
-
-#addReminder {
-    background-color: lightgray;
-    padding: 10px;
-    border-radius: 15px;
-    border: 1px solid green;
-}
-
-#addReminder>span {
-    font-weight: bold;
-}
-
-#addReminder:hover {
-    background-color: rgb(158, 158, 158);
-    cursor: pointer;
-}
 
 .navbar {
     display: flex;
@@ -98,7 +27,7 @@
     cursor: pointer;
     color: white;
     margin-left: auto;
-
+    
 }
 
 
@@ -126,19 +55,17 @@
         font-size: x-large;
         font-weight: 600;
         text-align: center;
-        margin: 0.4rem 0;
-        /* reduced spacing */
-    }
+        margin: 0.4rem 0; /* reduced spacing */
+      }
 
     .footer-links {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        gap: 30px;
-        /* even spacing between icons */
+        gap: 30px; /* even spacing between icons */
         margin: 0.4rem 0;
-    }
+      }
 
     .footer-icon {
         width: 30px;
@@ -150,7 +77,7 @@
         flex-direction: row;
         align-items: center;
         position: relative;
-
+       
     }
 
     .menu-toggle {
@@ -172,7 +99,7 @@
 
     .nav-links.active {
         max-height: 500px;
-
+        
     }
 
     .nav-links a {
@@ -206,12 +133,29 @@
 .footer-icon:hover {
     transform: scale(1.2);
     filter: brightness(0.8) invert(1) sepia(1) hue-rotate(80deg) saturate(3);
-}
+  } 
 
-.delete-btn {
-    margin-left: 5px;
-    border: 1px solid red;
-    border-radius: 5px;
-    color: red;
-    padding: 2px;
-}
+  
+  #weather-icon {
+    display: inline;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    /* margin-left: 8px; */
+  }
+  
+  .card{
+    background: #0c4a2cac;
+  }
+  
+  .main{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .main{
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+  }
